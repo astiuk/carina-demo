@@ -14,6 +14,9 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = LoginPageBase.class)
 public class LoginPage extends LoginPageBase implements IMobileUtils {
 
+    @FindBy(xpath = "//android.widget.TextView[@text = 'CARINA']")
+    private ExtendedWebElement carinaTitle;
+
     @FindBy(id = "name")
     private ExtendedWebElement nameInputField;
 
@@ -48,13 +51,40 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
+    public String getNameFieldText() {
+        return nameInputField.getText();
+    }
+
+    @Override
+    public String getPasswordFieldText() {
+        return passwordInputField.getText();
+    }
+
+    @Override
     public void selectMaleSex() {
         maleRadioBtn.click();
     }
 
     @Override
+    public void selectSex(Sex sex) {
+        if(sex.equals(Sex.male)) maleRadioBtn.click();
+        else femaleRadioBtn.click();
+    }
+
+    @Override
+    public boolean isSexChecked(Sex sex) {
+        if(sex.equals(Sex.male)) return maleRadioBtn.isChecked();
+        else return femaleRadioBtn.isChecked();
+    }
+
+    @Override
     public void checkPrivacyPolicyCheckbox() {
         privacyPolicyCheckbox.click();
+    }
+
+    @Override
+    public boolean isPrivacyPolicyChecked() {
+        return privacyPolicyCheckbox.isChecked();
     }
 
     @Override
@@ -66,6 +96,37 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     @Override
     public boolean isLoginBtnActive() {
         return Boolean.parseBoolean(loginBtn.getAttribute("enabled"));
+    }
+
+    @Override
+    public boolean isPageOpen() {
+        return carinaTitle.isElementPresent();
+    }
+
+    @Override
+    public boolean isNameInputFieldPresent() {
+        return nameInputField.isPresent();
+    }
+
+    @Override
+    public boolean isPasswordInputFieldPresent() {
+        return passwordInputField.isPresent();
+    }
+
+    @Override
+    public boolean isSexRadioBtnPresent(Sex sex) {
+        if(sex.equals(Sex.male)) return maleRadioBtn.isPresent();
+        else return femaleRadioBtn.isPresent();
+    }
+
+    @Override
+    public boolean isPrivacyPolicyCheckboxPresent() {
+        return privacyPolicyCheckbox.isPresent();
+    }
+
+    @Override
+    public boolean isLoginBtnPresent() {
+        return loginBtn.isPresent();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
 
+import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -54,13 +55,38 @@ public class LoginPage extends LoginPageBase {
 	}
 
 	@Override
+	public String getNameFieldText() {
+		throw new NotImplementedException("Method is not implement for IOS");
+	}
+
+	@Override
+	public String getPasswordFieldText() {
+		throw new NotImplementedException("Method is not implement for IOS");
+	}
+
+	@Override
 	public void selectMaleSex() {
 		maleRadioBtn.click();
 	}
 
 	@Override
+	public void selectSex(Sex sex) {
+		throw new NotImplementedException("Method is not implement for IOS");
+	}
+
+	@Override
+	public boolean isSexChecked(Sex sex) {
+		throw new NotImplementedException("Method is not implement for IOS");
+	}
+
+	@Override
 	public void checkPrivacyPolicyCheckbox() {
 		privacyPolicyCheckbox.click();
+	}
+
+	@Override
+	public boolean isPrivacyPolicyChecked() {
+		throw new NotImplementedException("Method is not implement for IOS");
 	}
 
 	@Override
@@ -72,6 +98,36 @@ public class LoginPage extends LoginPageBase {
 	@Override
 	public boolean isLoginBtnActive() {
 		return Boolean.parseBoolean(loginBtn.getAttribute("enabled"));
+	}
+
+	@Override
+	public boolean isPageOpen() {
+		throw new NotImplementedException("Method is not implement for IOS");
+	}
+
+	@Override
+	public boolean isNameInputFieldPresent() {
+		throw new NotImplementedException("Method is not implement for IOS");
+	}
+
+	@Override
+	public boolean isPasswordInputFieldPresent() {
+		throw new NotImplementedException("Method is not implement for IOS");
+	}
+
+	@Override
+	public boolean isSexRadioBtnPresent(Sex sex) {
+		throw new NotImplementedException("Method is not implement for IOS");
+	}
+
+	@Override
+	public boolean isPrivacyPolicyCheckboxPresent() {
+		throw new NotImplementedException("Method is not implement for IOS");
+	}
+
+	@Override
+	public boolean isLoginBtnPresent() {
+		throw new NotImplementedException("Method is not implement for IOS");
 	}
 
 	@Override

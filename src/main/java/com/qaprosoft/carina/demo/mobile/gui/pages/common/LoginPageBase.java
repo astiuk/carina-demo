@@ -32,7 +32,7 @@ public abstract class LoginPageBase extends AbstractPage {
 
 	public abstract boolean isLoginBtnActive();
 
-	public abstract boolean isPageOpen();
+	public abstract boolean isLoginPageOpened();
 
 	public abstract boolean isNameInputFieldPresent();
 

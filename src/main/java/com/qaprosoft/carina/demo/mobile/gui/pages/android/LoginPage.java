@@ -17,6 +17,7 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     @FindBy(xpath = "//android.widget.TextView[@text = 'CARINA']")
     private ExtendedWebElement carinaTitle;
 
+    //TODO: add package name to id
     @FindBy(id = "name")
     private ExtendedWebElement nameInputField;
 
@@ -99,7 +100,7 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
-    public boolean isPageOpen() {
+    public boolean isLoginPageOpened() {
         return carinaTitle.isElementPresent();
     }
 
@@ -135,7 +136,7 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
         String password = RandomStringUtils.randomAlphabetic(10);
         typeName(username);
         typePassword(password);
-        selectMaleSex();
+        selectSex(Sex.male);
         checkPrivacyPolicyCheckbox();
         return clickLoginBtn();
     }

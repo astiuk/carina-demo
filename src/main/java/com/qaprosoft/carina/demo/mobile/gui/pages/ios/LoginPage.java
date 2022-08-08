@@ -101,7 +101,7 @@ public class LoginPage extends LoginPageBase {
 	}
 
 	@Override
-	public boolean isPageOpen() {
+	public boolean isLoginPageOpened() {
 		throw new NotImplementedException("Method is not implement for IOS");
 	}
 
@@ -136,7 +136,7 @@ public class LoginPage extends LoginPageBase {
 		String password = RandomStringUtils.randomAlphabetic(10);
 		typeName(username);
 		typePassword(password);
-		selectMaleSex();
+		selectSex(Sex.male);
 		checkPrivacyPolicyCheckbox();
 		return clickLoginBtn();
 	}

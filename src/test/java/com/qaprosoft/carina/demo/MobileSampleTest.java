@@ -32,7 +32,6 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.WelcomePageBase;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils.View;
-import org.testng.asserts.SoftAssert;
 
 
 public class MobileSampleTest implements IAbstractTest, IMobileUtils {
@@ -66,7 +65,7 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page isn't opened");
 //        1 - on Welcome page click Next btn -> Login page is opened
         LoginPageBase loginPage = welcomePage.clickNextBtn();
-        Assert.assertTrue(loginPage.isPageOpen(), "Login page isn't open");
+        Assert.assertTrue(loginPage.isLoginPageOpened(), "Login page isn't open");
 
 //        2 - verify fields are present -> they must be (name, password, male/female and privacy policy checkbox) and male/female and privacy policy aren't checked
         Assert.assertTrue(loginPage.isNameInputFieldPresent(), "Name field wasn't found");
@@ -75,7 +74,6 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(loginPage.isSexRadioBtnPresent(LoginPageBase.Sex.female), "Female radio wasn't found");
         Assert.assertTrue(loginPage.isPrivacyPolicyCheckboxPresent(), "Privacy policy checkbox wasn't found");
         Assert.assertTrue(loginPage.isLoginBtnPresent(), "Login button wasn't found");
-        Assert.assertFalse(loginPage.isLoginBtnActive(), "Login button is active when it should be disabled");
 
 //        3 - type name, password -> name and password are typed
         loginPage.typeName(username);

@@ -17,7 +17,6 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     @FindBy(xpath = "//android.widget.TextView[@text = 'CARINA']")
     private ExtendedWebElement carinaTitle;
 
-    //TODO: add package name to id
     @FindBy(id = "com.solvd.carinademoapplication:id/name")
     private ExtendedWebElement nameInputField;
 

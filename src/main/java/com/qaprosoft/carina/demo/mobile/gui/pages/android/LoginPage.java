@@ -18,22 +18,22 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     private ExtendedWebElement carinaTitle;
 
     //TODO: add package name to id
-    @FindBy(id = "name")
+    @FindBy(id = "com.solvd.carinademoapplication:id/name")
     private ExtendedWebElement nameInputField;
 
-    @FindBy(id = "password")
+    @FindBy(id = "com.solvd.carinademoapplication:id/password")
     private ExtendedWebElement passwordInputField;
 
-    @FindBy(id = "radio_male")
+    @FindBy(id = "com.solvd.carinademoapplication:id/radio_male")
     private ExtendedWebElement maleRadioBtn;
 
-    @FindBy(id = "radio_female")
+    @FindBy(id = "com.solvd.carinademoapplication:id/radio_female")
     private ExtendedWebElement femaleRadioBtn;
 
-    @FindBy(id = "checkbox")
+    @FindBy(id = "com.solvd.carinademoapplication:id/checkbox")
     private ExtendedWebElement privacyPolicyCheckbox;
 
-    @FindBy(id = "login_button")
+    @FindBy(id = "com.solvd.carinademoapplication:id/login_button")
     private ExtendedWebElement loginBtn;
 
     public LoginPage(WebDriver driver) {

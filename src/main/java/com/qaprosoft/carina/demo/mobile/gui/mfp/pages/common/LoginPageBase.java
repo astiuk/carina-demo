@@ -1,12 +1,11 @@
-package com.qaprosoft.carina.demo.mobile.gui.pages.common;
+package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.MfpHomePageBase;
 import org.openqa.selenium.WebDriver;
 
-public abstract class MfpLoginPageBase extends AbstractPage {
+public abstract class LoginPageBase extends AbstractPage {
 
-    public MfpLoginPageBase(WebDriver driver) {
+    public LoginPageBase(WebDriver driver) {
         super(driver);
     }
 
@@ -34,11 +33,13 @@ public abstract class MfpLoginPageBase extends AbstractPage {
 
     public abstract boolean isFacebookLoginButtonClickable();
 
-    public abstract MfpHomePageBase clickLoginButton();
+    public abstract HomePageBase clickLoginButton();
 
     //TODO: change void to Page
     public abstract void clickForgotPasswordButton();
 
     //TODO: change void to Page
     public abstract void clickFacebookLoginButton();
+
+    public abstract HomePageBase login(String email, String password);
 }

@@ -1,12 +1,14 @@
-package com.qaprosoft.carina.demo.mobile.gui.components.common;
+package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common;
 
-import com.qaprosoft.carina.core.gui.AbstractUIObject;
+import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
 //TODO: remake component to page
-public class HomeScreenTipPopUpBase extends AbstractUIObject {
+public abstract class HomeScreenTipPopUpBase extends AbstractPage {
 
     public HomeScreenTipPopUpBase(WebDriver driver) {
         super(driver);
     }
+
+    public abstract void clickCloseButton();
 }

@@ -3,9 +3,11 @@ package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
-public abstract class MfpHomePageBase extends AbstractPage {
+public abstract class HomePageBase extends AbstractPage {
 
-    public MfpHomePageBase(WebDriver driver) {
+    public HomePageBase(WebDriver driver) {
         super(driver);
     }
+
+    public abstract UserProfilePageBase openUserProfile();
 }

@@ -1,2 +1,24 @@
-package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.ios;public class CommonPage {
+package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.ios;
+
+import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.CommonPageBase;
+import org.apache.commons.lang3.NotImplementedException;
+import org.openqa.selenium.WebDriver;
+
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = CommonPageBase.class)
+public class CommonPage extends CommonPageBase {
+
+    public CommonPage(WebDriver driver) {
+        super(driver);
+    }
+
+    @Override
+    public boolean isUserLoggedIn(String username) {
+        throw new NotImplementedException("Method is not implement for IOS");
+    }
+
+    @Override
+    public void closePopUp() {
+        throw new NotImplementedException("Method is not implement for IOS");
+    }
 }

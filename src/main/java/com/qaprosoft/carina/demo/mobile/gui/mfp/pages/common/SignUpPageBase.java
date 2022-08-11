@@ -1,11 +1,11 @@
-package com.qaprosoft.carina.demo.mobile.gui.pages.common;
+package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
-public abstract class MfpSignUpPageBase extends AbstractPage {
+public abstract class SignUpPageBase extends AbstractPage {
 
-    public MfpSignUpPageBase(WebDriver driver) {
+    public SignUpPageBase(WebDriver driver) {
         super(driver);
     }
 }

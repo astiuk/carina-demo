@@ -1,15 +1,15 @@
-package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
+package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.ios;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
-import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.MfpHomePageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MfpLoginPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.HomePageBase;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.LoginPageBase;
 import org.apache.commons.lang3.NotImplementedException;
 import org.openqa.selenium.WebDriver;
 
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = MfpLoginPageBase.class)
-public class MfpLoginPage extends MfpLoginPageBase {
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = LoginPageBase.class)
+public class LoginPage extends LoginPageBase {
 
-    public MfpLoginPage(WebDriver driver) {
+    public LoginPage(WebDriver driver) {
         super(driver);
     }
 
@@ -74,7 +74,7 @@ public class MfpLoginPage extends MfpLoginPageBase {
     }
 
     @Override
-    public MfpHomePageBase clickLoginButton() {
+    public HomePageBase clickLoginButton() {
         throw new NotImplementedException("Method is not implement for IOS");
     }
 
@@ -85,6 +85,11 @@ public class MfpLoginPage extends MfpLoginPageBase {
 
     @Override
     public void clickFacebookLoginButton() {
+        throw new NotImplementedException("Method is not implement for IOS");
+    }
+
+    @Override
+    public HomePageBase login(String email, String password) {
         throw new NotImplementedException("Method is not implement for IOS");
     }
 }

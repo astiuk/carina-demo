@@ -1,14 +1,14 @@
-package com.qaprosoft.carina.demo.mobile.gui.pages.android;
+package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.MfpHomePageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MfpLoginPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.HomePageBase;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.LoginPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = MfpLoginPageBase.class)
-public class MfpLoginPage extends MfpLoginPageBase {
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = LoginPageBase.class)
+public class LoginPage extends LoginPageBase {
 
     @FindBy(id = "com.myfitnesspal.android:id/email_address_edit")
     private ExtendedWebElement emailField;
@@ -25,7 +25,7 @@ public class MfpLoginPage extends MfpLoginPageBase {
     @FindBy(id = "com.myfitnesspal.android:id/facebook_button")
     private ExtendedWebElement facebookLoginButton;
 
-    public MfpLoginPage(WebDriver driver) {
+    public LoginPage(WebDriver driver) {
         super(driver);
     }
 
@@ -95,9 +95,9 @@ public class MfpLoginPage extends MfpLoginPageBase {
     }
 
     @Override
-    public MfpHomePageBase clickLoginButton() {
+    public HomePageBase clickLoginButton() {
         loginButton.click();
-        return new MfpHomePage(this.driver);
+        return initPage(getDriver(), HomePageBase.class);
     }
 
     //TODO: change void to Page
@@ -110,5 +110,12 @@ public class MfpLoginPage extends MfpLoginPageBase {
     @Override
     public void clickFacebookLoginButton() {
         facebookLoginButton.click();
+    }
+
+    @Override
+    public HomePageBase login(String email, String password) {
+        typeEmail(email);
+        typePassword(password);
+        return clickLoginButton();
     }
 }

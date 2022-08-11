@@ -16,7 +16,5 @@ public class MfpMobileTest implements IAbstractTest, IMobileUtils {
     public void userLoginTest() {
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
         loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
-        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
-        commonPage.isUserLoggedIn(R.TESTDATA.get("username"));
     }
 }

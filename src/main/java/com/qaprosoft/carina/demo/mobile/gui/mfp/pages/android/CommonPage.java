@@ -17,9 +17,8 @@ public class CommonPage extends CommonPageBase {
 
     @Override
     public boolean isUserLoggedIn(String username) {
-        DashboardPageBase homePage = initPage(getDriver(), DashboardPageBase.class);
-        UserProfilePageBase userProfilePage = homePage.openUserProfile();
-        Assert.assertEquals(userProfilePage.getUserName(), username);
+        DashboardPageBase dashboardPage = initPage(getDriver(), DashboardPageBase.class);
+        Assert.assertTrue(dashboardPage.isPageOpened(), "Dashboard Page isn't open");
         return true;
     }
 

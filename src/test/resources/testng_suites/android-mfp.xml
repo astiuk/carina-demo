@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="MyFitnessPal - Mobile test (Android)" verbose="1" parallel="methods">
+
+    <test name="MyFitnessPal login credentials">
+        <parameter name="email" value="test_weight_user1@gmail.com"/>
+        <parameter name="password" value="1234567890"/>
+        <classes>
+            <class name="com.qaprosoft.carina.demo.MfpMobileTest">
+                <methods>
+                    <include name="userLoginTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

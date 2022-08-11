@@ -54,6 +54,46 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
     }
 
+    @Test
+    @MethodOwner(owner = "Hostiuk")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void userLoginTest() {
+        String username = "Test user";
+        String password = RandomStringUtils.randomAlphabetic(10);
+
+        WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
+        Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page isn't opened");
+//        1 - on Welcome page click Next btn -> Login page is opened
+        LoginPageBase loginPage = welcomePage.clickNextBtn();
+        Assert.assertTrue(loginPage.isLoginPageOpened(), "Login page isn't open");
+
+//        2 - verify fields are present -> they must be (name, password, male/female and privacy policy checkbox) and male/female and privacy policy aren't checked
+        Assert.assertTrue(loginPage.isNameInputFieldPresent(), "Name field wasn't found");
+        Assert.assertTrue(loginPage.isPasswordInputFieldPresent(), "Password field wasn't found");
+        Assert.assertTrue(loginPage.isSexRadioBtnPresent(LoginPageBase.Sex.male), "Male radio wasn't found");
+        Assert.assertTrue(loginPage.isSexRadioBtnPresent(LoginPageBase.Sex.female), "Female radio wasn't found");
+        Assert.assertTrue(loginPage.isPrivacyPolicyCheckboxPresent(), "Privacy policy checkbox wasn't found");
+        Assert.assertTrue(loginPage.isLoginBtnPresent(), "Login button wasn't found");
+
+//        3 - type name, password -> name and password are typed
+        loginPage.typeName(username);
+        loginPage.typePassword(password);
+        Assert.assertEquals(loginPage.getNameFieldText(), username, "Name isn't typed");
+        Assert.assertEquals(loginPage.getPasswordFieldText(), password, "Password isn't typed");
+
+//        4 - chose sex -> male or female is checked
+        loginPage.selectSex(LoginPageBase.Sex.male);
+        Assert.assertTrue(loginPage.isSexChecked(LoginPageBase.Sex.male), LoginPageBase.Sex.male + " sex isn't checked");
+
+//        5 - tap Privacy Policy checkbox -> checkbox is checked
+        loginPage.checkPrivacyPolicyCheckbox();
+        Assert.assertTrue(loginPage.isPrivacyPolicyChecked(), "Privacy policy isn't checked");
+
+//        6 - click Sign Up btn -> user is logined, Web View page is opened
+        CarinaDescriptionPageBase carinaDescriptionPage = loginPage.clickLoginBtn();
+        Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
+    }
+
 	@Test()
     @MethodOwner(owner = "qpsdemo")
     @TestLabel(name = "feature", value = {"mobile", "regression"})

@@ -14,22 +14,25 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = LoginPageBase.class)
 public class LoginPage extends LoginPageBase implements IMobileUtils {
 
-    @FindBy(id = "name")
+    @FindBy(xpath = "//android.widget.TextView[@text = 'CARINA']")
+    private ExtendedWebElement carinaTitle;
+
+    @FindBy(id = "com.solvd.carinademoapplication:id/name")
     private ExtendedWebElement nameInputField;
 
-    @FindBy(id = "password")
+    @FindBy(id = "com.solvd.carinademoapplication:id/password")
     private ExtendedWebElement passwordInputField;
 
-    @FindBy(id = "radio_male")
+    @FindBy(id = "com.solvd.carinademoapplication:id/radio_male")
     private ExtendedWebElement maleRadioBtn;
 
-    @FindBy(id = "radio_female")
+    @FindBy(id = "com.solvd.carinademoapplication:id/radio_female")
     private ExtendedWebElement femaleRadioBtn;
 
-    @FindBy(id = "checkbox")
+    @FindBy(id = "com.solvd.carinademoapplication:id/checkbox")
     private ExtendedWebElement privacyPolicyCheckbox;
 
-    @FindBy(id = "login_button")
+    @FindBy(id = "com.solvd.carinademoapplication:id/login_button")
     private ExtendedWebElement loginBtn;
 
     public LoginPage(WebDriver driver) {
@@ -48,13 +51,40 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
+    public String getNameFieldText() {
+        return nameInputField.getText();
+    }
+
+    @Override
+    public String getPasswordFieldText() {
+        return passwordInputField.getText();
+    }
+
+    @Override
     public void selectMaleSex() {
         maleRadioBtn.click();
     }
 
     @Override
+    public void selectSex(Sex sex) {
+        if(sex.equals(Sex.male)) maleRadioBtn.click();
+        else femaleRadioBtn.click();
+    }
+
+    @Override
+    public boolean isSexChecked(Sex sex) {
+        if(sex.equals(Sex.male)) return maleRadioBtn.isChecked();
+        else return femaleRadioBtn.isChecked();
+    }
+
+    @Override
     public void checkPrivacyPolicyCheckbox() {
         privacyPolicyCheckbox.click();
+    }
+
+    @Override
+    public boolean isPrivacyPolicyChecked() {
+        return privacyPolicyCheckbox.isChecked();
     }
 
     @Override
@@ -69,12 +99,43 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
+    public boolean isLoginPageOpened() {
+        return carinaTitle.isElementPresent();
+    }
+
+    @Override
+    public boolean isNameInputFieldPresent() {
+        return nameInputField.isPresent();
+    }
+
+    @Override
+    public boolean isPasswordInputFieldPresent() {
+        return passwordInputField.isPresent();
+    }
+
+    @Override
+    public boolean isSexRadioBtnPresent(Sex sex) {
+        if(sex.equals(Sex.male)) return maleRadioBtn.isPresent();
+        else return femaleRadioBtn.isPresent();
+    }
+
+    @Override
+    public boolean isPrivacyPolicyCheckboxPresent() {
+        return privacyPolicyCheckbox.isPresent();
+    }
+
+    @Override
+    public boolean isLoginBtnPresent() {
+        return loginBtn.isPresent();
+    }
+
+    @Override
     public CarinaDescriptionPageBase login() {
         String username = "Test user";
         String password = RandomStringUtils.randomAlphabetic(10);
         typeName(username);
         typePassword(password);
-        selectMaleSex();
+        selectSex(Sex.male);
         checkPrivacyPolicyCheckbox();
         return clickLoginBtn();
     }

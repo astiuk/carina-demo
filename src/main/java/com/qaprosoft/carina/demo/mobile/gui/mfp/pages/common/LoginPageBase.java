@@ -33,7 +33,7 @@ public abstract class LoginPageBase extends AbstractPage {
 
     public abstract boolean isFacebookLoginButtonClickable();
 
-    public abstract HomePageBase clickLoginButton();
+    public abstract DashboardPageBase clickLoginButton();
 
     //TODO: change void to Page
     public abstract void clickForgotPasswordButton();
@@ -41,5 +41,5 @@ public abstract class LoginPageBase extends AbstractPage {
     //TODO: change void to Page
     public abstract void clickFacebookLoginButton();
 
-    public abstract HomePageBase login(String email, String password);
+    public abstract DashboardPageBase login(String email, String password);
 }

@@ -4,11 +4,11 @@ import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
 //TODO: remake component to page
-public abstract class HomeScreenTipPopUpBase extends AbstractPage {
+public abstract class HomeScreenModalBase extends AbstractPage {
 
-    public HomeScreenTipPopUpBase(WebDriver driver) {
+    public HomeScreenModalBase(WebDriver driver) {
         super(driver);
     }
 
-    public abstract void clickCloseButton();
+    public abstract DashboardPageBase closeModal();
 }

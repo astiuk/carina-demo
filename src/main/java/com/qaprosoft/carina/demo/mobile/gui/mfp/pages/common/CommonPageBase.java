@@ -10,5 +10,4 @@ public abstract class CommonPageBase extends AbstractPage {
 
     public abstract boolean isUserLoggedIn(String username);
 
-    public abstract void closePopUp();
 }

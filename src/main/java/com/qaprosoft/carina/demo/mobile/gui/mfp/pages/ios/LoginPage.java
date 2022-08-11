@@ -1,7 +1,7 @@
 package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.ios;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
-import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.HomePageBase;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.DashboardPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.LoginPageBase;
 import org.apache.commons.lang3.NotImplementedException;
 import org.openqa.selenium.WebDriver;
@@ -74,7 +74,7 @@ public class LoginPage extends LoginPageBase {
     }
 
     @Override
-    public HomePageBase clickLoginButton() {
+    public DashboardPageBase clickLoginButton() {
         throw new NotImplementedException("Method is not implement for IOS");
     }
 
@@ -89,7 +89,7 @@ public class LoginPage extends LoginPageBase {
     }
 
     @Override
-    public HomePageBase login(String email, String password) {
+    public DashboardPageBase login(String email, String password) {
         throw new NotImplementedException("Method is not implement for IOS");
     }
 }

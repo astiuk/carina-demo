@@ -26,7 +26,7 @@ public class WelcomePage extends WelcomePageBase {
     @Override
     public LoginPageBase clickLoginButton() {
         logInButton.click();
-        return new LoginPage(this.driver);
+        return initPage(getDriver(), LoginPageBase.class);
     }
 
     @Override

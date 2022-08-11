@@ -1,15 +1,15 @@
 package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.ios;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
-import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.HomePageBase;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.DashboardPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.UserProfilePageBase;
 import org.apache.commons.lang3.NotImplementedException;
 import org.openqa.selenium.WebDriver;
 
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = HomePageBase.class)
-public class HomePage extends HomePageBase {
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = DashboardPageBase.class)
+public class DashboardPage extends DashboardPageBase {
 
-    public HomePage(WebDriver driver) {
+    public DashboardPage(WebDriver driver) {
         super(driver);
     }
 

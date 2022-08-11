@@ -3,27 +3,24 @@ package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.android;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
-import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.HomePageBase;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.DashboardPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.UserProfilePageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = HomePageBase.class)
-public class HomePage extends HomePageBase {
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = DashboardPageBase.class)
+public class DashboardPage extends DashboardPageBase {
 
     @ExtendedFindBy(accessibilityId = "User avatar")
     private ExtendedWebElement userAvatar;
 
-    @FindBy(xpath = "")
-    private ExtendedWebElement userName;
-
-    public HomePage(WebDriver driver) {
+    public DashboardPage(WebDriver driver) {
         super(driver);
     }
 
     @Override
     public UserProfilePageBase openUserProfile() {
-        userName.click();
+        userAvatar.click();
         return initPage(getDriver(), UserProfilePageBase.class);
     }
 

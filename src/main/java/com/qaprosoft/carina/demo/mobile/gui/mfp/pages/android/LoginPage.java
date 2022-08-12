@@ -135,7 +135,7 @@ public class LoginPage extends LoginPageBase {
         HomeScreenModalBase homeScreenModal = initPage(getDriver(), HomeScreenModalBase.class);
         homeScreenModal.closeModal();
         DashboardPageBase dashboardPage = initPage(getDriver(), DashboardPageBase.class);
-        Assert.assertTrue(dashboardPage.isPageOpened(), "Login fail, Home page isn't open");
+        Assert.assertTrue(dashboardPage.isPageOpened(), "Login fail, Dashboard page isn't open");
         return dashboardPage;
     }
 }

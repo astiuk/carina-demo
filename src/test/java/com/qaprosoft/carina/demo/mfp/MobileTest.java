@@ -6,6 +6,7 @@ import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.qaprosoft.carina.demo.mobile.enums.BottomNavigatorButtons;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.*;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import org.testng.Assert;
@@ -30,13 +31,13 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
         loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
-        AbstractPage dashboardPage = commonPage.clickBottomNavigatorButton(CommonPageBase.BottomNavigatorButtons.DASHBOARD);
-        Assert.assertTrue(dashboardPage.isPageOpened(), "Dashboard page isn't open");
-        AbstractPage diaryPage = commonPage.clickBottomNavigatorButton(CommonPageBase.BottomNavigatorButtons.DIARY);
-        Assert.assertTrue(diaryPage.isPageOpened(), "Diary page isn't open");
-        AbstractPage newsfeedPage = commonPage.clickBottomNavigatorButton(CommonPageBase.BottomNavigatorButtons.NEWSFEED);
-        Assert.assertTrue(newsfeedPage.isPageOpened(), "Newsfeed page isn't open");
-        AbstractPage plansPage = commonPage.clickBottomNavigatorButton(CommonPageBase.BottomNavigatorButtons.PLANS);
-        Assert.assertTrue(plansPage.isPageOpened(), "Diary page isn't open");
+        AbstractPage dashboardPage = commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.DASHBOARD);
+        Assert.assertTrue(dashboardPage.isPageOpened(), "Dashboard page isn't opened");
+        AbstractPage diaryPage = commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.DIARY);
+        Assert.assertTrue(diaryPage.isPageOpened(), "Diary page isn't opened");
+        AbstractPage newsfeedPage = commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.NEWSFEED);
+        Assert.assertTrue(newsfeedPage.isPageOpened(), "Newsfeed page isn't opened");
+        AbstractPage plansPage = commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.PLANS);
+        Assert.assertTrue(plansPage.isPageOpened(), "Diary page isn't opened");
     }
 }

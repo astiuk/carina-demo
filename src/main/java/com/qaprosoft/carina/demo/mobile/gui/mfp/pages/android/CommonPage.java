@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.qaprosoft.carina.demo.mobile.enums.BottomNavigatorButtons;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -31,7 +32,7 @@ public class CommonPage extends CommonPageBase {
     @Override
     public boolean isUserLoggedIn(String username) {
         DashboardPageBase dashboardPage = initPage(getDriver(), DashboardPageBase.class);
-        Assert.assertTrue(dashboardPage.isPageOpened(), "Dashboard Page isn't open");
+        Assert.assertTrue(dashboardPage.isPageOpened(), "Dashboard page isn't opened");
         return true;
     }
 
@@ -40,14 +41,14 @@ public class CommonPage extends CommonPageBase {
         switch (button)
         {
             case DASHBOARD: dashboardButton.click();
-                return initPage(getDriver(), DashboardPageBase.class);
+                break;
             case DIARY: diaryButton.click();
-                return initPage(getDriver(), DiaryPageBase.class);
+                break;
             case NEWSFEED: newsfeedButton.click();
-                return initPage(getDriver(), NewsfeedPageBase.class);
+                break;
             case PLANS: plansButton.click();
-                return initPage(getDriver(), PlansPageBase.class);
-            default: return null;
+                break;
         }
+        return initPage(getDriver(), button.getPage());
     }
 }

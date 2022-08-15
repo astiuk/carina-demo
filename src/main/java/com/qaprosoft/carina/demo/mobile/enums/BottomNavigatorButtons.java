@@ -6,10 +6,10 @@ import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.NewsfeedPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlansPageBase;
 
 public enum BottomNavigatorButtons {
-    DASHBOARD("Dashboard", "", DashboardPageBase.class),
-    DIARY("Diary", "", DiaryPageBase.class),
-    NEWSFEED("Newsfeed", "", NewsfeedPageBase.class),
-    PLANS("Plans", "", PlansPageBase.class);
+    DASHBOARD("Dashboard", "Dashboard", DashboardPageBase.class),
+    DIARY("Diary", "Diary", DiaryPageBase.class),
+    NEWSFEED("Newsfeed", "Newsfeed", NewsfeedPageBase.class),
+    PLANS("Plans", "Plans", PlansPageBase.class);
 
     private String optionAndroid;
     private String optionIos;

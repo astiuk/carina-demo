@@ -13,17 +13,8 @@ import org.testng.Assert;
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = CommonPageBase.class)
 public class CommonPage extends CommonPageBase {
 
-    @ExtendedFindBy(accessibilityId = "Dashboard")
-    private ExtendedWebElement dashboardButton;
-
-    @ExtendedFindBy(accessibilityId = "Diary")
-    private ExtendedWebElement diaryButton;
-
-    @ExtendedFindBy(accessibilityId = "Newsfeed")
-    private ExtendedWebElement newsfeedButton;
-
-    @ExtendedFindBy(accessibilityId = "Plans")
-    private ExtendedWebElement plansButton;
+    @ExtendedFindBy(accessibilityId = "%s")
+    private ExtendedWebElement navigationButton;
 
     public CommonPage(WebDriver driver) {
         super(driver);
@@ -38,17 +29,7 @@ public class CommonPage extends CommonPageBase {
 
     @Override
     public AbstractPage clickBottomNavigatorButton(BottomNavigatorButtons button) {
-        switch (button)
-        {
-            case DASHBOARD: dashboardButton.click();
-                break;
-            case DIARY: diaryButton.click();
-                break;
-            case NEWSFEED: newsfeedButton.click();
-                break;
-            case PLANS: plansButton.click();
-                break;
-        }
+        navigationButton.format(button.getOptionAndroid()).click();
         return initPage(getDriver(), button.getPage());
     }
 }

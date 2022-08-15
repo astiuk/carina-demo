@@ -40,4 +40,18 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
         AbstractPage plansPage = commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.PLANS);
         Assert.assertTrue(plansPage.isPageOpened(), "Diary page isn't opened");
     }
+
+    @Test
+    @MethodOwner(owner = "Hostiuk")
+    @TestRailCases(testCasesId = "2")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void goalCaloriesEqualsRemainCaloriesTest() {
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        DiaryPageBase diaryPage = initPage(getDriver(), DiaryPageBase.class);
+        diaryPage.clearDiary();
+        Assert.assertEquals(diaryPage.getGoalCalories(), diaryPage.getRemainCalories(),
+                "Goal calories and remain calories aren't equal");
+    }
 }

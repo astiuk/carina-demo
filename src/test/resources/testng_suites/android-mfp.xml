@@ -5,7 +5,7 @@
         <parameter name="email" value="test_weight_user1@gmail.com"/>
         <parameter name="password" value="1234567890"/>
         <classes>
-            <class name="com.qaprosoft.carina.demo.MfpMobileTest">
+            <class name="com.qaprosoft.carina.demo.mfp.MobileTest">
                 <methods>
                     <include name="userLoginTest"/>
                 </methods>

@@ -6,7 +6,6 @@ import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.DashboardPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.UserProfilePageBase;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = DashboardPageBase.class)
 public class DashboardPage extends DashboardPageBase {

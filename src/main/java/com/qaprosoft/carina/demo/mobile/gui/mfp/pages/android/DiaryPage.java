@@ -41,8 +41,6 @@ public class DiaryPage extends DiaryPageBase {
             editDiaryPage.checkSelectAll();
             editDiaryPage.clickTrashBin();
             editDiaryPage.clickConfirmDelete();
-//            ConfirmDeletePageBase confirmDeletePage = initPage(getDriver(), ConfirmDeletePageBase.class);
-//            confirmDeletePage.clickDelete();
         }
     }
 

@@ -14,17 +14,7 @@ public class EditDiaryPage extends EditDiaryPageBase {
     }
 
     @Override
-    public void clickTrashBin() {
-        throw new NotImplementedException("Method is not implement for IOS");
-    }
-
-    @Override
-    public void checkSelectAll() {
-        throw new NotImplementedException("Method is not implement for IOS");
-    }
-
-    @Override
-    public DiaryPageBase clickConfirmDelete() {
+    public DiaryPageBase clearAll() {
         throw new NotImplementedException("Method is not implement for IOS");
     }
 }

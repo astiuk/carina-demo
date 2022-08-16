@@ -38,9 +38,7 @@ public class DiaryPage extends DiaryPageBase {
         {
             editDiaryButton.click(3);
             EditDiaryPageBase editDiaryPage = initPage(getDriver(), EditDiaryPageBase.class);
-            editDiaryPage.checkSelectAll();
-            editDiaryPage.clickTrashBin();
-            editDiaryPage.clickConfirmDelete();
+            editDiaryPage.clearAll();
         }
     }
 

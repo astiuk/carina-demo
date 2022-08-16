@@ -9,9 +9,5 @@ public abstract class EditDiaryPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract void clickTrashBin();
-
-    public abstract void checkSelectAll();
-
-    public abstract DiaryPageBase clickConfirmDelete();
+    public abstract DiaryPageBase clearAll();
 }

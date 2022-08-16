@@ -25,17 +25,9 @@ public class EditDiaryPage extends EditDiaryPageBase{
     }
 
     @Override
-    public void clickTrashBin() {
-        trashBinButton.click(3);
-    }
-
-    @Override
-    public void checkSelectAll() {
+    public DiaryPageBase clearAll() {
         selectAllCheckbox.check();
-    }
-
-    @Override
-    public DiaryPageBase clickConfirmDelete() {
+        trashBinButton.click(3);
         confirmDeleteButton.click(3);
         return initPage(getDriver(), DiaryPageBase.class);
     }

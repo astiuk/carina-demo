@@ -24,8 +24,8 @@ public class DiaryPage extends DiaryPageBase {
     @FindBy(id = "com.myfitnesspal.android:id/remaining_diary")
     private ExtendedWebElement remainCalories;
 
-    @FindBy(xpath = "(//android.widget.Button[@text='ADD FOOD'])[1]")
-    private ExtendedWebElement addFoodBreakfastButton;
+    @FindBy(xpath = "(//android.widget.Button[@text='ADD FOOD'])[%d]")
+    private ExtendedWebElement addFoodButton;
 
     @FindBy(xpath = "//android.widget.TextView[@text='Quick Add']")
     private ExtendedWebElement quickAddButton;
@@ -62,9 +62,9 @@ public class DiaryPage extends DiaryPageBase {
     }
 
     @Override
-    public QuickAddPageBase openQuickAddBreakfastPage() {
-        addFoodBreakfastButton.click();
-        quickAddButton.click();
+    public QuickAddPageBase openQuickAddPage(Meals meal) {
+        addFoodButton.format(meal.getMealNumber()).click(3);
+        quickAddButton.click(3);
         return initPage(getDriver(), QuickAddPageBase.class);
     }
 

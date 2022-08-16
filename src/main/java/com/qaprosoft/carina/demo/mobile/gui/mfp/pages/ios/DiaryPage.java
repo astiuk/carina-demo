@@ -33,7 +33,7 @@ public class DiaryPage extends DiaryPageBase {
     }
 
     @Override
-    public QuickAddPageBase openQuickAddBreakfastPage() {
+    public QuickAddPageBase openQuickAddPage(Meals meal) {
         throw new NotImplementedException("Method is not implement for IOS");
     }
 }

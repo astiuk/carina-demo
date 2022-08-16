@@ -66,7 +66,7 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         DiaryPageBase diaryPage = (DiaryPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.DIARY);
-        QuickAddPageBase quickAddPage = diaryPage.openQuickAddBreakfastPage();
+        QuickAddPageBase quickAddPage = diaryPage.openQuickAddPage(DiaryPageBase.Meals.BREAKFAST);
         quickAddPage.fillAllFields(1, 1, 1);
         Assert.assertEquals(quickAddPage.getCalories(), 17, "Calories calculation is wrong");
     }

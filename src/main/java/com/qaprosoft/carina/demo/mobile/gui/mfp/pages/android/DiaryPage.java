@@ -3,11 +3,8 @@ package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.android;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
-import com.qaprosoft.carina.demo.mobile.enums.BottomNavigatorButtons;
-import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.CommonPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.DiaryPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.EditDiaryPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.ConfirmDeletePageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -37,19 +34,15 @@ public class DiaryPage extends DiaryPageBase {
 
     @Override
     public void clearDiary() {
-        if(!isPageOpened())
-        {
-            CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
-            commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.DIARY);
-        }
         if(!isDiaryClean())
         {
-            editDiaryButton.click();
+            editDiaryButton.click(3);
             EditDiaryPageBase editDiaryPage = initPage(getDriver(), EditDiaryPageBase.class);
             editDiaryPage.checkSelectAll();
             editDiaryPage.clickTrashBin();
-            ConfirmDeletePageBase confirmDeletePage = initPage(getDriver(), ConfirmDeletePageBase.class);
-            confirmDeletePage.clickDelete();
+            editDiaryPage.clickConfirmDelete();
+//            ConfirmDeletePageBase confirmDeletePage = initPage(getDriver(), ConfirmDeletePageBase.class);
+//            confirmDeletePage.clickDelete();
         }
     }
 

@@ -49,7 +49,8 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
         loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
 
-        DiaryPageBase diaryPage = initPage(getDriver(), DiaryPageBase.class);
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        DiaryPageBase diaryPage = (DiaryPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.DIARY);
         diaryPage.clearDiary();
         Assert.assertEquals(diaryPage.getGoalCalories(), diaryPage.getRemainCalories(),
                 "Goal calories and remain calories aren't equal");

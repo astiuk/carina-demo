@@ -5,6 +5,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.DiaryPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.EditDiaryPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.QuickAddPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -22,6 +23,12 @@ public class DiaryPage extends DiaryPageBase {
 
     @FindBy(id = "com.myfitnesspal.android:id/remaining_diary")
     private ExtendedWebElement remainCalories;
+
+    @FindBy(xpath = "(//android.widget.Button[@text='ADD FOOD'])[%d]")
+    private ExtendedWebElement addFoodButton;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='Quick Add']")
+    private ExtendedWebElement quickAddButton;
 
     public DiaryPage(WebDriver driver) {
         super(driver);
@@ -52,6 +59,13 @@ public class DiaryPage extends DiaryPageBase {
     public int getRemainCalories() {
         String calories = remainCalories.getText();
         return Integer.parseInt(calories.replace(",", ""));
+    }
+
+    @Override
+    public QuickAddPageBase openQuickAddPage(Meals meal) {
+        addFoodButton.format(meal.getMealNumber()).click(3);
+        quickAddButton.click(3);
+        return initPage(getDriver(), QuickAddPageBase.class);
     }
 
     @Override

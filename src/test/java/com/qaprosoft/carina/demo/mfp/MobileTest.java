@@ -55,4 +55,20 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
         Assert.assertEquals(diaryPage.getGoalCalories(), diaryPage.getRemainCalories(),
                 "Goal calories and remain calories aren't equal");
     }
+
+    @Test
+    @MethodOwner(owner = "Hostiuk")
+    @TestRailCases(testCasesId = "3")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void caloriesValidationOnQuickAddTest() {
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        DiaryPageBase diaryPage = (DiaryPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.DIARY);
+        QuickAddPageBase quickAddPage = diaryPage.openQuickAddPage(DiaryPageBase.Meals.BREAKFAST);
+        quickAddPage.fillAllFields(1, 1, 1);
+        Assert.assertEquals(quickAddPage.getCalories(), 17, "Calories calculation is wrong");
+    }
+
 }

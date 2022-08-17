@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.android;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.CustomDashboardPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.DiaryPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.EditDiaryPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.QuickAddPageBase;
@@ -29,6 +30,9 @@ public class DiaryPage extends DiaryPageBase {
 
     @FindBy(xpath = "//android.widget.TextView[@text='Quick Add']")
     private ExtendedWebElement quickAddButton;
+
+    @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/dashboardTitle']/android.widget.ImageView")
+    private ExtendedWebElement customDashboardButton;
 
     public DiaryPage(WebDriver driver) {
         super(driver);
@@ -66,6 +70,14 @@ public class DiaryPage extends DiaryPageBase {
         addFoodButton.format(meal.getMealNumber()).click(3);
         quickAddButton.click(3);
         return initPage(getDriver(), QuickAddPageBase.class);
+    }
+
+    @Override
+    public DiaryPageBase selectCustomDashboard(CustomDashboardPageBase.Options option) {
+        customDashboardButton.click(3);
+        CustomDashboardPageBase customDashboardPage = initPage(getDriver(), CustomDashboardPageBase.class);
+        customDashboardPage.selectCustomDashboard(option);
+        return initPage(getDriver(), DiaryPageBase.class);
     }
 
     @Override

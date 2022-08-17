@@ -7,6 +7,7 @@ import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.mobile.enums.BottomNavigatorButtons;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.*;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 
@@ -15,6 +16,12 @@ public class CommonPage extends CommonPageBase {
 
     @ExtendedFindBy(accessibilityId = "%s")
     private ExtendedWebElement navigationButton;
+
+    @FindBy(xpath = "//*[@text='%s']")
+    private ExtendedWebElement itemByText;
+
+    @FindBy(id = "com.myfitnesspal.android:id/close_btn")
+    private ExtendedWebElement closeButton;
 
     public CommonPage(WebDriver driver) {
         super(driver);
@@ -31,5 +38,15 @@ public class CommonPage extends CommonPageBase {
     public AbstractPage clickBottomNavigatorButton(BottomNavigatorButtons button) {
         navigationButton.format(button.getOptionAndroid()).click();
         return initPage(getDriver(), button.getPage());
+    }
+
+    @Override
+    public void clickCloseButton() {
+        closeButton.click(3);
+    }
+
+    @Override
+    public boolean isItemByTextPresent(String text) {
+        return itemByText.format(text).isPresent(3);
     }
 }

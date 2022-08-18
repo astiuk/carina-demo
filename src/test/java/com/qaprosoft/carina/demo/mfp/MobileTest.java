@@ -78,13 +78,13 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
     @TestRailCases(testCasesId = "4, 5")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void customDashboardTest() {
+        SoftAssert softAssert = new SoftAssert();
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
         loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         DiaryPageBase diaryPage = (DiaryPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.DIARY);
         diaryPage.selectCustomDashboard(CustomDashboardPageBase.Options.CALORIES_FOCUS);
-        SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.GOAL),
                 IConstants.GOAL + " label is not present");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.FOOD),

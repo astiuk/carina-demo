@@ -1,9 +1,10 @@
 package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common;
 
+import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
-public abstract class CustomSummaryPageBase extends AbstractPage {
+public abstract class CustomSummaryPageBase extends AbstractPage implements IMobileUtils {
 
     public CustomSummaryPageBase(WebDriver driver) {
         super(driver);

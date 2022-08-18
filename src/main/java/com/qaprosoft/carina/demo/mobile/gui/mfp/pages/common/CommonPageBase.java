@@ -13,4 +13,8 @@ public abstract class CommonPageBase extends AbstractPage {
 
     public abstract AbstractPage clickBottomNavigatorButton(BottomNavigatorButtons button);
 
+    public abstract void clickCloseModalButton();
+
+    public abstract boolean isItemByTextPresent(String text);
+
 }

@@ -1,7 +1,6 @@
 package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.android.DiaryPage;
 import org.openqa.selenium.WebDriver;
 
 public abstract class DiaryPageBase extends AbstractPage {
@@ -19,6 +18,8 @@ public abstract class DiaryPageBase extends AbstractPage {
     public abstract int getRemainCalories();
 
     public abstract QuickAddPageBase openQuickAddPage(Meals meal);
+
+    public abstract DiaryPageBase selectCustomDashboard(CustomDashboardPageBase.Options option);
 
     public enum Meals {
         BREAKFAST(1),

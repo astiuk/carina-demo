@@ -21,7 +21,7 @@ public class CommonPage extends CommonPageBase {
     private ExtendedWebElement itemByText;
 
     @FindBy(id = "com.myfitnesspal.android:id/close_btn")
-    private ExtendedWebElement closeButton;
+    private ExtendedWebElement closeModalButton;
 
     public CommonPage(WebDriver driver) {
         super(driver);
@@ -41,8 +41,8 @@ public class CommonPage extends CommonPageBase {
     }
 
     @Override
-    public void clickCloseButton() {
-        closeButton.click(3);
+    public void clickCloseModalButton() {
+        closeModalButton.click(3);
     }
 
     @Override

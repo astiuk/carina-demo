@@ -25,7 +25,7 @@ public class CommonPage extends CommonPageBase {
     }
 
     @Override
-    public void clickCloseButton() {
+    public void clickCloseModalButton() {
         throw new NotImplementedException("Method is not implement for IOS");
     }
 

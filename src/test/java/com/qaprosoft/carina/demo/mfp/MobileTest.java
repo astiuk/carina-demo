@@ -93,10 +93,8 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
                 IConstants.EXERCISE + " label is not present");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.REMAINING),
                 IConstants.REMAINING + " label is not present");
-        softAssert.assertAll();
 
         diaryPage.selectCustomDashboard(CustomDashboardPageBase.Options.MACRONUTRIENT_FOCUS);
-        softAssert = new SoftAssert();
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.CARBS),
                 IConstants.CARBS + " label is not present");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.FAT),
@@ -105,10 +103,8 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
                 IConstants.PROTEIN + " label is not present");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.CALORIES),
                 IConstants.CALORIES + " label is not present");
-        softAssert.assertAll();
 
         diaryPage.selectCustomDashboard(CustomDashboardPageBase.Options.HEART_HEALTHY);
-        softAssert = new SoftAssert();
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.FAT),
                 IConstants.FAT + " label is not present");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.SODIUM),
@@ -117,11 +113,9 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
                 IConstants.CHOLESTEROL + " label is not present");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.CALORIES),
                 IConstants.CALORIES + " label is not present");
-        softAssert.assertAll();
 
         diaryPage.selectCustomDashboard(CustomDashboardPageBase.Options.LOW_CARB);
-        commonPage.clickCloseButton();
-        softAssert = new SoftAssert();
+        commonPage.clickCloseModalButton();
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.CARBS),
                 IConstants.CARBS + " label is not present");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.SUGAR),
@@ -130,10 +124,8 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
                 IConstants.FIBER + " label is not present");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.CALORIES),
                 IConstants.CALORIES + " label is not present");
-        softAssert.assertAll();
 
         diaryPage.selectCustomDashboard(CustomDashboardPageBase.Options.CUSTOM);
-        softAssert = new SoftAssert();
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.PROTEIN),
                 IConstants.PROTEIN + " label is not present");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.FAT),

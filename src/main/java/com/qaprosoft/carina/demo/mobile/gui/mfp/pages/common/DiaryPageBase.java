@@ -19,7 +19,7 @@ public abstract class DiaryPageBase extends AbstractPage {
 
     public abstract QuickAddPageBase openQuickAddPage(Meals meal);
 
-    public abstract DiaryPageBase selectCustomDashboard(CustomDashboardPageBase.Options option);
+    public abstract AbstractPage selectCustomDashboard(CustomDashboardPageBase.Options option);
 
     public enum Meals {
         BREAKFAST(1),

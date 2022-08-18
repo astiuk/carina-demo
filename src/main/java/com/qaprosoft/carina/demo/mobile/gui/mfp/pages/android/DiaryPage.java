@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.android;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
+import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.CustomDashboardPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.DiaryPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.EditDiaryPageBase;
@@ -73,11 +74,11 @@ public class DiaryPage extends DiaryPageBase {
     }
 
     @Override
-    public DiaryPageBase selectCustomDashboard(CustomDashboardPageBase.Options option) {
+    public AbstractPage selectCustomDashboard(CustomDashboardPageBase.Options option) {
         customDashboardButton.click(3);
         CustomDashboardPageBase customDashboardPage = initPage(getDriver(), CustomDashboardPageBase.class);
         customDashboardPage.selectCustomDashboard(option);
-        return initPage(getDriver(), DiaryPageBase.class);
+        return initPage(getDriver(), option.getPage());
     }
 
     @Override

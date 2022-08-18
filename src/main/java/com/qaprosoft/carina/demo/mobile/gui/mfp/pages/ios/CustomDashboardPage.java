@@ -1,8 +1,8 @@
 package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.ios;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
+import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.CustomDashboardPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.DiaryPageBase;
 import org.apache.commons.lang3.NotImplementedException;
 import org.openqa.selenium.WebDriver;
 
@@ -14,7 +14,7 @@ public class CustomDashboardPage extends CustomDashboardPageBase {
     }
 
     @Override
-    public DiaryPageBase selectCustomDashboard(Options option) {
+    public AbstractPage selectCustomDashboard(Options option) {
         throw new NotImplementedException("Method is not implement for IOS");
     }
 }

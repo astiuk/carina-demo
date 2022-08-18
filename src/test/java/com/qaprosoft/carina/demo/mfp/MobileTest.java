@@ -75,7 +75,7 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
 
     @Test
     @MethodOwner(owner = "Hostiuk")
-    @TestRailCases(testCasesId = "4")
+    @TestRailCases(testCasesId = "4, 5")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void customDashboardTest() {
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
@@ -125,7 +125,15 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.CALORIES),
                 IConstants.CALORIES + " label is not present");
 
-        diaryPage.selectCustomDashboard(CustomDashboardPageBase.Options.CUSTOM);
+        CustomSummaryPageBase customSummaryPage = (CustomSummaryPageBase) diaryPage.selectCustomDashboard(
+                CustomDashboardPageBase.Options.CUSTOM);
+        softAssert.assertTrue(customSummaryPage.isNutrientChecked(CustomSummaryPageBase.Nutrients.FAT),
+                CustomSummaryPageBase.Nutrients.FAT + " nutrient isn't checked");
+        softAssert.assertTrue(customSummaryPage.isNutrientChecked(CustomSummaryPageBase.Nutrients.CARBOHYDRATES),
+                CustomSummaryPageBase.Nutrients.CARBOHYDRATES + " nutrient isn't checked");
+        softAssert.assertTrue(customSummaryPage.isNutrientChecked(CustomSummaryPageBase.Nutrients.PROTEIN),
+                CustomSummaryPageBase.Nutrients.PROTEIN + " nutrient isn't checked");
+        customSummaryPage.clickDoneButton();
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.PROTEIN),
                 IConstants.PROTEIN + " label is not present");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.FAT),

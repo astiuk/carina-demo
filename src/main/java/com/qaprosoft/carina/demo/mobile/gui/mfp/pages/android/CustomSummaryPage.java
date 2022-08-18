@@ -28,6 +28,11 @@ public class CustomSummaryPage extends CustomSummaryPageBase {
     }
 
     @Override
+    public void checkNutrient(Nutrients nutrient) {
+        nutrientCheckbox.format(nutrient.getNutrientId()).check();
+    }
+
+    @Override
     public boolean isNutrientChecked(Nutrients nutrient) {
         return nutrientCheckbox.format(nutrient.getNutrientId()).isChecked();
     }

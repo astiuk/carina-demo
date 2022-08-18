@@ -127,10 +127,13 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
 
         CustomSummaryPageBase customSummaryPage = (CustomSummaryPageBase) diaryPage.selectCustomDashboard(
                 CustomDashboardPageBase.Options.CUSTOM);
+        customSummaryPage.checkNutrient(CustomSummaryPageBase.Nutrients.FAT);
         softAssert.assertTrue(customSummaryPage.isNutrientChecked(CustomSummaryPageBase.Nutrients.FAT),
                 CustomSummaryPageBase.Nutrients.FAT + " nutrient isn't checked");
+        customSummaryPage.checkNutrient(CustomSummaryPageBase.Nutrients.CARBOHYDRATES);
         softAssert.assertTrue(customSummaryPage.isNutrientChecked(CustomSummaryPageBase.Nutrients.CARBOHYDRATES),
                 CustomSummaryPageBase.Nutrients.CARBOHYDRATES + " nutrient isn't checked");
+        customSummaryPage.checkNutrient(CustomSummaryPageBase.Nutrients.PROTEIN);
         softAssert.assertTrue(customSummaryPage.isNutrientChecked(CustomSummaryPageBase.Nutrients.PROTEIN),
                 CustomSummaryPageBase.Nutrients.PROTEIN + " nutrient isn't checked");
         customSummaryPage.clickDoneButton();

@@ -11,12 +11,27 @@ public abstract class CustomSummaryPageBase extends AbstractPage {
 
     public abstract DiaryPageBase clickDoneButton();
 
+    public abstract void checkNutrient(Nutrients nutrient);
+
     public abstract boolean isNutrientChecked(Nutrients nutrient);
 
     public enum Nutrients {
         FAT("cbFat"),
+        SAT_FAT("cbSatFat"),
+        POLY_FAT("cbPolyFat"),
+        MONO_FAT("cbMonoFat"),
+        TRANS_FAT("cbTransFat"),
+        CHOLESTEROL("cbCholesterol"),
+        SODIUM("cbSodium"),
+        POTASSIUM("cbPotassium"),
         CARBOHYDRATES("cbCarbs"),
-        PROTEIN("cbProtein");
+        FIBER("cbFiber"),
+        SUGAR("cbSugar"),
+        PROTEIN("cbProtein"),
+        VITAMIN_A("cbVitaminA"),
+        VITAMIN_C("cbVitaminC"),
+        CALCIUM("cbCalcium"),
+        IRON("cbIron");
 
         private String nutrientId;
 

@@ -18,6 +18,11 @@ public class CustomSummaryPage extends CustomSummaryPageBase {
     }
 
     @Override
+    public void checkNutrient(Nutrients nutrient) {
+        throw new NotImplementedException("Method is not implement for IOS");
+    }
+
+    @Override
     public boolean isNutrientChecked(Nutrients nutrient) {
         throw new NotImplementedException("Method is not implement for IOS");
     }

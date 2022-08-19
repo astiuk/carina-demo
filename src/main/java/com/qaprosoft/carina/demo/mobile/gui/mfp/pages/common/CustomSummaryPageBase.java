@@ -12,7 +12,11 @@ public abstract class CustomSummaryPageBase extends AbstractPage implements IMob
 
     public abstract DiaryPageBase clickDoneButton();
 
+    public abstract boolean isDoneButtonActive();
+
     public abstract void checkNutrient(Nutrients nutrient);
+
+    public abstract void uncheckNutrient(Nutrients nutrient);
 
     public abstract boolean isNutrientChecked(Nutrients nutrient);
 

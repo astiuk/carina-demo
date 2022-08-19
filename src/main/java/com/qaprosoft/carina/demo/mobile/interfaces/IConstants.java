@@ -15,4 +15,8 @@ public interface IConstants {
     String CHOLESTEROL = "Cholesterol (mg)";
     String SUGAR = "Sugar (g)";
     String FIBER = "Fiber (g)";
+
+    String THREE_OF_THREE_NUTRIENTS_SELECTED = "3 of 3 nutrients selected.";
+    String TWO_OF_THREE_NUTRIENTS_SELECTED = "2 of 3 nutrients selected.";
+    String FOUR_NUTRIENTS_SELECTED = "4 nutrients selected. Please select only 3.";
 }

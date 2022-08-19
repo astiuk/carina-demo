@@ -75,16 +75,16 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
 
     @Test
     @MethodOwner(owner = "Hostiuk")
-    @TestRailCases(testCasesId = "4")
+    @TestRailCases(testCasesId = "4, 5")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void customDashboardTest() {
+        SoftAssert softAssert = new SoftAssert();
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
         loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         DiaryPageBase diaryPage = (DiaryPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.DIARY);
         diaryPage.selectCustomDashboard(CustomDashboardPageBase.Options.CALORIES_FOCUS);
-        SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.GOAL),
                 IConstants.GOAL + " label is not present");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.FOOD),
@@ -125,7 +125,18 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.CALORIES),
                 IConstants.CALORIES + " label is not present");
 
-        diaryPage.selectCustomDashboard(CustomDashboardPageBase.Options.CUSTOM);
+        CustomSummaryPageBase customSummaryPage = (CustomSummaryPageBase) diaryPage.selectCustomDashboard(
+                CustomDashboardPageBase.Options.CUSTOM);
+        customSummaryPage.checkNutrient(CustomSummaryPageBase.Nutrients.FAT);
+        softAssert.assertTrue(customSummaryPage.isNutrientChecked(CustomSummaryPageBase.Nutrients.FAT),
+                CustomSummaryPageBase.Nutrients.FAT + " nutrient isn't checked");
+        customSummaryPage.checkNutrient(CustomSummaryPageBase.Nutrients.CARBOHYDRATES);
+        softAssert.assertTrue(customSummaryPage.isNutrientChecked(CustomSummaryPageBase.Nutrients.CARBOHYDRATES),
+                CustomSummaryPageBase.Nutrients.CARBOHYDRATES + " nutrient isn't checked");
+        customSummaryPage.checkNutrient(CustomSummaryPageBase.Nutrients.PROTEIN);
+        softAssert.assertTrue(customSummaryPage.isNutrientChecked(CustomSummaryPageBase.Nutrients.PROTEIN),
+                CustomSummaryPageBase.Nutrients.PROTEIN + " nutrient isn't checked");
+        customSummaryPage.clickDoneButton();
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.PROTEIN),
                 IConstants.PROTEIN + " label is not present");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.FAT),

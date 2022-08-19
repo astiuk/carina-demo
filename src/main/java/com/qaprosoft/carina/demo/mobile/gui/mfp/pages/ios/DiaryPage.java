@@ -1,6 +1,7 @@
 package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.ios;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
+import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.CustomDashboardPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.DiaryPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.QuickAddPageBase;
@@ -39,7 +40,7 @@ public class DiaryPage extends DiaryPageBase {
     }
 
     @Override
-    public DiaryPageBase selectCustomDashboard(CustomDashboardPageBase.Options option) {
+    public AbstractPage selectCustomDashboard(CustomDashboardPageBase.Options option) {
         throw new NotImplementedException("Method is not implement for IOS");
     }
 }

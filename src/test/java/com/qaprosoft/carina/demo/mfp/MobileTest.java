@@ -166,12 +166,14 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
         customSummaryPage.uncheckNutrient(CustomSummaryPageBase.Nutrients.FAT);
         Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.TWO_OF_THREE_NUTRIENTS_SELECTED),
                 IConstants.TWO_OF_THREE_NUTRIENTS_SELECTED + " text isn't present");
-        Assert.assertFalse(customSummaryPage.isDoneButtonActive(), "Save button is active");
+        Assert.assertFalse(customSummaryPage.isDoneButtonActive(),
+                "Save button is active after choosing 2 nutrients");
         customSummaryPage.checkNutrient(CustomSummaryPageBase.Nutrients.FAT);
         customSummaryPage.checkNutrient(CustomSummaryPageBase.Nutrients.SAT_FAT);
         Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.FOUR_NUTRIENTS_SELECTED),
                 IConstants.FOUR_NUTRIENTS_SELECTED + " text isn't present");
-        Assert.assertFalse(customSummaryPage.isDoneButtonActive(), "Save button is active");
+        Assert.assertFalse(customSummaryPage.isDoneButtonActive(),
+                "Save button is active after choosing 4 nutrients");
     }
 
 }

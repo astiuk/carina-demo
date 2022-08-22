@@ -12,7 +12,10 @@ import org.testng.Assert;
 public class MoreMenuPage extends MoreMenuPageBase {
 
     @FindBy(id = "com.myfitnesspal.android:id/image")
-    ExtendedWebElement userAvatar;
+    private ExtendedWebElement userAvatar;
+
+    @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/moreRecyclerView']//*[@text='%s']")
+    private ExtendedWebElement moreOption;
 
     public MoreMenuPage(WebDriver driver) {
         super(driver);
@@ -20,9 +23,8 @@ public class MoreMenuPage extends MoreMenuPageBase {
 
     @Override
     public boolean isOptionPresent(MoreOptions option) {
-        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
-        commonPage.SwipeToElementByText(option.getOptionText());
-        return commonPage.isItemByTextPresent(option.getOptionText());
+        swipe(moreOption.format(option.getOptionText(), Direction.VERTICAL, 3, 1000));
+        return moreOption.format(option.getOptionText()).isPresent();
     }
 
     @Override

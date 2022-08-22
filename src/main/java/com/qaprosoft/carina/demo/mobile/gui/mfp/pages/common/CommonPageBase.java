@@ -5,7 +5,7 @@ import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.mobile.enums.BottomNavigatorButtons;
 import org.openqa.selenium.WebDriver;
 
-public abstract class CommonPageBase extends AbstractPage implements IMobileUtils {
+public abstract class CommonPageBase extends AbstractPage {
     public CommonPageBase(WebDriver driver) {
         super(driver);
     }
@@ -17,7 +17,5 @@ public abstract class CommonPageBase extends AbstractPage implements IMobileUtil
     public abstract void clickCloseModalButton();
 
     public abstract boolean isItemByTextPresent(String text);
-
-    public abstract void SwipeToElementByText(String text);
 
 }

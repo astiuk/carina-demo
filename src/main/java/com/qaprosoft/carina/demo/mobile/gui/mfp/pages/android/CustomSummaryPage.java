@@ -28,9 +28,20 @@ public class CustomSummaryPage extends CustomSummaryPageBase {
     }
 
     @Override
+    public boolean isDoneButtonActive() {
+        return Boolean.parseBoolean(doneButton.getAttribute("enabled"));
+    }
+
+    @Override
     public void checkNutrient(Nutrients nutrient) {
         swipe(nutrientCheckbox.format(nutrient.getNutrientId()), Direction.VERTICAL, 2, 1000);
         nutrientCheckbox.format(nutrient.getNutrientId()).check();
+    }
+
+    @Override
+    public void uncheckNutrient(Nutrients nutrient) {
+        swipe(nutrientCheckbox.format(nutrient.getNutrientId()), Direction.VERTICAL, 2, 1000);
+        nutrientCheckbox.format(nutrient.getNutrientId()).uncheck();
     }
 
     @Override

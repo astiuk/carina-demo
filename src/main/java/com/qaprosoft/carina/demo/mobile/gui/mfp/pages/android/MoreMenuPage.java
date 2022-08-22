@@ -13,12 +13,9 @@ public class MoreMenuPage extends MoreMenuPageBase {
     }
 
     @Override
-    public void AssertAllOptionsArePresent() {
+    public boolean isOptionPresent(MoreOptions option) {
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
-        for (MoreOptions option : MoreOptions.values()) {
-            commonPage.SwipeToElementByText(option.getOptionText());
-            Assert.assertTrue(commonPage.isItemByTextPresent(option.getOptionText()),
-                    String.format("More option \"%s\" isn't present", option.getOptionText()));
-        }
+        commonPage.SwipeToElementByText(option.getOptionText());
+        return commonPage.isItemByTextPresent(option.getOptionText());
     }
 }

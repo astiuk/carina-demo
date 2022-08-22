@@ -182,13 +182,18 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
     @TestRailCases(testCasesId = "6")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void moreMenuOptionsValidationTest() {
+        SoftAssert softAssert = new SoftAssert();
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
         loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         MoreMenuPageBase moreMenuPage = (MoreMenuPageBase) commonPage.clickBottomNavigatorButton(
                 BottomNavigatorButtons.MORE);
-        moreMenuPage.AssertAllOptionsArePresent();
+        for (MoreMenuPageBase.MoreOptions option : MoreMenuPageBase.MoreOptions.values()) {
+            softAssert.assertTrue(moreMenuPage.isOptionPresent(option),
+                    String.format("More option \"%s\" isn't present", option.getOptionText()));
+        }
+        softAssert.assertAll();
     }
 
 }

@@ -8,7 +8,7 @@ public abstract class MoreMenuPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract void AssertAllOptionsArePresent();
+    public abstract boolean isOptionPresent(MoreOptions option);
 
     public enum MoreOptions {
         MY_PREMIUM_TOOLS("My Premium Tools"),

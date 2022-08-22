@@ -12,7 +12,7 @@ public class MoreMenuPage extends MoreMenuPageBase {
     }
 
     @Override
-    public void AssertAllOptionsArePresent() {
+    public boolean isOptionPresent(MoreOptions option) {
         throw new NotImplementedException("Method is not implement for IOS");
     }
 }

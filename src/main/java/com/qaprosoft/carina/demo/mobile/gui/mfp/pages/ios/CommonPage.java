@@ -34,4 +34,9 @@ public class CommonPage extends CommonPageBase {
         throw new NotImplementedException("Method is not implement for IOS");
     }
 
+    @Override
+    public void SwipeToElementByText(String text) {
+        throw new NotImplementedException("Method is not implement for IOS");
+    }
+
 }

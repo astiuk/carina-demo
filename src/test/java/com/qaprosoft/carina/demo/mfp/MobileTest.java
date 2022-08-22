@@ -177,4 +177,18 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
                 "Save button is active after choosing 4 nutrients");
     }
 
+    @Test
+    @MethodOwner(owner = "Hostiuk")
+    @TestRailCases(testCasesId = "6")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void moreMenuOptionsValidationTest() {
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        MoreMenuPageBase moreMenuPage = (MoreMenuPageBase) commonPage.clickBottomNavigatorButton(
+                BottomNavigatorButtons.MORE);
+        moreMenuPage.AssertAllOptionsArePresent();
+    }
+
 }

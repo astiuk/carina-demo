@@ -49,4 +49,9 @@ public class CommonPage extends CommonPageBase {
     public boolean isItemByTextPresent(String text) {
         return itemByText.format(text).isPresent(3);
     }
+
+    @Override
+    public void SwipeToElementByText(String text) {
+        swipe(itemByText.format(text), Direction.VERTICAL, 3, 1000);
+    }
 }

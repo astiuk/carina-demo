@@ -189,6 +189,7 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         MoreMenuPageBase moreMenuPage = (MoreMenuPageBase) commonPage.clickBottomNavigatorButton(
                 BottomNavigatorButtons.MORE);
+        Assert.assertTrue(moreMenuPage.isPageOpened(), "More menu page isn't opened");
         for (MoreMenuPageBase.MoreOptions option : MoreMenuPageBase.MoreOptions.values()) {
             softAssert.assertTrue(moreMenuPage.isOptionPresent(option),
                     String.format("More option \"%s\" isn't present", option.getOptionText()));

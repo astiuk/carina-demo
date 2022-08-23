@@ -2,6 +2,7 @@ package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.demo.mobile.enums.PremiumOptions;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.MyPremiumToolsPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -17,8 +18,14 @@ public class MyPremiumToolsPage extends MyPremiumToolsPageBase {
     }
 
     @Override
-    public boolean isPremiumOptionPresent(PremiumOptions premiumOption, PremiumOptions.Options option) {
-        swipe(elementByText.format(premiumOption.getOption(option)), Direction.VERTICAL, 5, 1000);
-        return elementByText.format(premiumOption.getOption(option)).isPresent(3);
+    public boolean isPremiumOptionTitlePresent(PremiumOptions premiumOption) {
+        swipe(elementByText.format(premiumOption.getOptionTitle()), Direction.VERTICAL, 5, 1000);
+        return elementByText.format(premiumOption.getOptionTitle()).isPresent(3);
+    }
+
+    @Override
+    public boolean isPremiumOptionDescriptionPresent(PremiumOptions premiumOption) {
+        swipe(elementByText.format(premiumOption.getOptionDescription()), Direction.VERTICAL, 5, 1000);
+        return elementByText.format(premiumOption.getOptionDescription()).isPresent(3);
     }
 }

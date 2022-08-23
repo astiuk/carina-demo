@@ -7,6 +7,7 @@ import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.mobile.enums.BottomNavigatorButtons;
+import com.qaprosoft.carina.demo.mobile.enums.PremiumOptions;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.*;
 import com.qaprosoft.carina.demo.mobile.interfaces.IConstants;
 import com.zebrunner.agent.core.annotation.TestLabel;
@@ -210,19 +211,13 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
         MoreMenuPageBase moreMenuPage = (MoreMenuPageBase) commonPage.clickBottomNavigatorButton(
                 BottomNavigatorButtons.MORE);
         Assert.assertTrue(moreMenuPage.isPageOpened(), "More menu page isn't opened");
-
         MyPremiumToolsPageBase myPremiumToolsPage = (MyPremiumToolsPageBase) moreMenuPage.clickMoreOption(
                 MoreMenuPageBase.MoreOptions.MY_PREMIUM_TOOLS);
-
-        for (MyPremiumToolsPageBase.PremiumOptions option : MyPremiumToolsPageBase.PremiumOptions.values()) {
-            softAssert.assertTrue(myPremiumToolsPage.isPremiumOptionPresent(option,
-                    MyPremiumToolsPageBase.PremiumOptions.Options.TITTLE),
-                    String.format("Premium option title \"%s\" isn't present",
-                            option.getOption(MyPremiumToolsPageBase.PremiumOptions.Options.TITTLE)));
-            softAssert.assertTrue(myPremiumToolsPage.isPremiumOptionPresent(option,
-                    MyPremiumToolsPageBase.PremiumOptions.Options.DESCRIPTION),
-                    String.format("Premium option description \"%s\" isn't present",
-                            option.getOption(MyPremiumToolsPageBase.PremiumOptions.Options.DESCRIPTION)));
+        for (PremiumOptions option : PremiumOptions.values()) {
+            softAssert.assertTrue(myPremiumToolsPage.isPremiumOptionTitlePresent(option),
+                    String.format("Premium option title \"%s\" isn't present", option.getOptionTitle()));
+            softAssert.assertTrue(myPremiumToolsPage.isPremiumOptionDescriptionPresent(option),
+                    String.format("Premium option description \"%s\" isn't present", option.getOptionDescription()));
         }
         softAssert.assertAll();
     }

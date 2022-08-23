@@ -179,7 +179,7 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
 
     @Test
     @MethodOwner(owner = "Hostiuk")
-    @TestRailCases(testCasesId = "6")
+    @TestRailCases(testCasesId = "7")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void moreMenuOptionsValidationTest() {
         SoftAssert softAssert = new SoftAssert();

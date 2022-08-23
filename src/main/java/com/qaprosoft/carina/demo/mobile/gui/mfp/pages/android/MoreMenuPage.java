@@ -24,7 +24,7 @@ public class MoreMenuPage extends MoreMenuPageBase {
     @Override
     public boolean isOptionPresent(MoreOptions option) {
         swipe(moreOption.format(option.getOptionText(), Direction.VERTICAL, 3, 1000));
-        return moreOption.format(option.getOptionText()).isPresent();
+        return moreOption.format(option.getOptionText()).isPresent(3);
     }
 
     @Override

@@ -191,8 +191,38 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
                 BottomNavigatorButtons.MORE);
         Assert.assertTrue(moreMenuPage.isPageOpened(), "More menu page isn't opened");
         for (MoreMenuPageBase.MoreOptions option : MoreMenuPageBase.MoreOptions.values()) {
-            softAssert.assertTrue(moreMenuPage.isOptionPresent(option),
+            softAssert.assertTrue(moreMenuPage.isMoreOptionPresent(option),
                     String.format("More option \"%s\" isn't present", option.getOptionText()));
+        }
+        softAssert.assertAll();
+    }
+
+    @Test
+    @MethodOwner(owner = "Hostiuk")
+    @TestRailCases(testCasesId = "8")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void myPremiumToolsPageValidationTest() {
+        SoftAssert softAssert = new SoftAssert();
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        MoreMenuPageBase moreMenuPage = (MoreMenuPageBase) commonPage.clickBottomNavigatorButton(
+                BottomNavigatorButtons.MORE);
+        Assert.assertTrue(moreMenuPage.isPageOpened(), "More menu page isn't opened");
+
+        MyPremiumToolsPageBase myPremiumToolsPage = (MyPremiumToolsPageBase) moreMenuPage.clickMoreOption(
+                MoreMenuPageBase.MoreOptions.MY_PREMIUM_TOOLS);
+
+        for (MyPremiumToolsPageBase.PremiumOptions option : MyPremiumToolsPageBase.PremiumOptions.values()) {
+            softAssert.assertTrue(myPremiumToolsPage.isPremiumOptionPresent(option,
+                    MyPremiumToolsPageBase.PremiumOptions.Options.TITTLE),
+                    String.format("Premium option title \"%s\" isn't present",
+                            option.getOption(MyPremiumToolsPageBase.PremiumOptions.Options.TITTLE)));
+            softAssert.assertTrue(myPremiumToolsPage.isPremiumOptionPresent(option,
+                    MyPremiumToolsPageBase.PremiumOptions.Options.DESCRIPTION),
+                    String.format("Premium option description \"%s\" isn't present",
+                            option.getOption(MyPremiumToolsPageBase.PremiumOptions.Options.DESCRIPTION)));
         }
         softAssert.assertAll();
     }

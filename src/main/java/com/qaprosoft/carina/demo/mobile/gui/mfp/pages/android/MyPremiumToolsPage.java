@@ -19,6 +19,6 @@ public class MyPremiumToolsPage extends MyPremiumToolsPageBase {
     @Override
     public boolean isPremiumOptionPresent(PremiumOptions premiumOption, PremiumOptions.Options option) {
         swipe(elementByText.format(premiumOption.getOption(option)), Direction.VERTICAL, 5, 1000);
-        return elementByText.format(premiumOption.getOption(option)).isPresent();
+        return elementByText.format(premiumOption.getOption(option)).isPresent(3);
     }
 }

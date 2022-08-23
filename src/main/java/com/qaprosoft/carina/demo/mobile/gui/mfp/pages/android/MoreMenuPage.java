@@ -37,6 +37,6 @@ public class MoreMenuPage extends MoreMenuPageBase {
 
     @Override
     public boolean isPageOpened() {
-        return userAvatar.isPresent();
+        return userAvatar.isPresent(3);
     }
 }

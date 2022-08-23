@@ -7,6 +7,7 @@ import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.mobile.enums.BottomNavigatorButtons;
+import com.qaprosoft.carina.demo.mobile.enums.PremiumOptions;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.*;
 import com.qaprosoft.carina.demo.mobile.interfaces.IConstants;
 import com.zebrunner.agent.core.annotation.TestLabel;
@@ -179,7 +180,7 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
 
     @Test
     @MethodOwner(owner = "Hostiuk")
-    @TestRailCases(testCasesId = "6")
+    @TestRailCases(testCasesId = "7")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void moreMenuOptionsValidationTest() {
         SoftAssert softAssert = new SoftAssert();
@@ -191,8 +192,32 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
                 BottomNavigatorButtons.MORE);
         Assert.assertTrue(moreMenuPage.isPageOpened(), "More menu page isn't opened");
         for (MoreMenuPageBase.MoreOptions option : MoreMenuPageBase.MoreOptions.values()) {
-            softAssert.assertTrue(moreMenuPage.isOptionPresent(option),
+            softAssert.assertTrue(moreMenuPage.isMoreOptionPresent(option),
                     String.format("More option \"%s\" isn't present", option.getOptionText()));
+        }
+        softAssert.assertAll();
+    }
+
+    @Test
+    @MethodOwner(owner = "Hostiuk")
+    @TestRailCases(testCasesId = "8")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void myPremiumToolsPageValidationTest() {
+        SoftAssert softAssert = new SoftAssert();
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        MoreMenuPageBase moreMenuPage = (MoreMenuPageBase) commonPage.clickBottomNavigatorButton(
+                BottomNavigatorButtons.MORE);
+        Assert.assertTrue(moreMenuPage.isPageOpened(), "More menu page isn't opened");
+        MyPremiumToolsPageBase myPremiumToolsPage = (MyPremiumToolsPageBase) moreMenuPage.clickMoreOption(
+                MoreMenuPageBase.MoreOptions.MY_PREMIUM_TOOLS);
+        for (PremiumOptions option : PremiumOptions.values()) {
+            softAssert.assertTrue(myPremiumToolsPage.isPremiumOptionTitlePresent(option),
+                    String.format("Premium option title \"%s\" isn't present", option.getOptionTitle()));
+            softAssert.assertTrue(myPremiumToolsPage.isPremiumOptionDescriptionPresent(option),
+                    String.format("Premium option description \"%s\" isn't present", option.getOptionDescription()));
         }
         softAssert.assertAll();
     }

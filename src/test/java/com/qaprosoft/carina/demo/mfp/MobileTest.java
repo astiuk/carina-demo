@@ -7,8 +7,10 @@ import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.mobile.enums.BottomNavigatorButtons;
+import com.qaprosoft.carina.demo.mobile.enums.PlanFilterRadioButtons;
 import com.qaprosoft.carina.demo.mobile.enums.PremiumOptions;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.*;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.ios.PlansPage;
 import com.qaprosoft.carina.demo.mobile.interfaces.IConstants;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import org.testng.Assert;
@@ -219,6 +221,37 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
             softAssert.assertTrue(myPremiumToolsPage.isPremiumOptionDescriptionPresent(option),
                     String.format("Premium option description \"%s\" isn't present", option.getOptionDescription()));
         }
+        softAssert.assertAll();
+    }
+
+    @Test
+    @MethodOwner(owner = "Hostiuk")
+    @TestRailCases(testCasesId = "9")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void plansPageValidationTest() {
+        SoftAssert softAssert = new SoftAssert();
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        PlansPageBase plansPage = (PlansPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.PLANS);
+        Assert.assertTrue(plansPage.isPageOpened(), "Plans page isn't opened");
+        softAssert.assertTrue(plansPage.isElementByTextPresent(IConstants.FIND_A_PLAN),
+                String.format("\"%s\" text isn't present", IConstants.FIND_A_PLAN));
+        softAssert.assertTrue(plansPage.isElementByTextPresent(IConstants.PLANS_DESCRIPTION),
+                String.format("\"%s\" text isn't present", IConstants.PLANS_DESCRIPTION));
+
+        softAssert.assertTrue(plansPage.isFilterByTextPresent(), "\"Filter by\" text isn't present");
+        for(PlanFilterRadioButtons button : PlanFilterRadioButtons.values()) {
+            softAssert.assertTrue(plansPage.isFilterButtonPresent(button),
+                    String.format("\"%s\" text isn't present", button.getButtonText()));
+        }
+
+        softAssert.assertTrue(plansPage.isElementByTextPresent(IConstants.LOOKING_FOR_MORE_PLANS),
+                String.format("\"%s\" text isn't present", IConstants.LOOKING_FOR_MORE_PLANS));
+        softAssert.assertTrue(plansPage.isElementByTextPresent(IConstants.PLANS_LET_US_KNOW),
+                String.format("\"%s\" text isn't present", IConstants.PLANS_LET_US_KNOW));
+        softAssert.assertTrue(plansPage.isTakeTheSurveyLinkPresent(), "Take The Survey link isn't present");
         softAssert.assertAll();
     }
 

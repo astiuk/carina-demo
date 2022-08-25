@@ -15,7 +15,8 @@ public class PlansPage extends PlansPageBase {
     @FindBy(id = "com.myfitnesspal.android.plans:id/textTitle")
     private ExtendedWebElement findAPlanTitle;
 
-    @FindBy(xpath = "//*[@text='%s']")
+    //@FindBy(xpath = "//*[@text='%s']")
+    @FindBy(xpath = "//*[contains(@text,'%s')]")
     private ExtendedWebElement elementByText;
 
     @FindBy(id = "com.myfitnesspal.android.plans:id/take_the_survey")
@@ -33,13 +34,13 @@ public class PlansPage extends PlansPageBase {
 
     @Override
     public boolean isAvailablePlansCardNamePresent(AvailablePlans availablePlan) {
-        swipe(elementByText.format(availablePlan.getPlanName()), Direction.VERTICAL, 5, 1000);
+        swipe(elementByText.format(availablePlan.getPlanName()), Direction.VERTICAL, 5, 500);
         return elementByText.format(availablePlan.getPlanName()).isPresent(3);
     }
 
     @Override
     public boolean isAvailablePlansCardDetailsPresent(AvailablePlans availablePlan) {
-        swipe(elementByText.format(availablePlan.getPlanDetails()), Direction.VERTICAL, 5, 1000);
+        swipe(elementByText.format(availablePlan.getPlanDetails()), Direction.VERTICAL, 5, 500);
         return elementByText.format(availablePlan.getPlanDetails()).isPresent(3);
     }
 
@@ -57,6 +58,11 @@ public class PlansPage extends PlansPageBase {
     @Override
     public boolean isFilterButtonPresent(PlanFilterRadioButtons button) {
         return filterRadioButton.format(button.getButtonText()).isPresent(3);
+    }
+
+    @Override
+    public void clickFilterButton(PlanFilterRadioButtons button) {
+        filterRadioButton.format(button.getButtonText()).click();
     }
 
     @Override

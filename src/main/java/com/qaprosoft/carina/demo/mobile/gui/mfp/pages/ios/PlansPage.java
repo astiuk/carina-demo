@@ -40,6 +40,11 @@ public class PlansPage extends PlansPageBase {
     }
 
     @Override
+    public void clickFilterButton(PlanFilterRadioButtons button) {
+        throw new NotImplementedException("Method is not implement for IOS");
+    }
+
+    @Override
     public boolean isElementByTextPresent(String text) {
         throw new NotImplementedException("Method is not implement for IOS");
     }

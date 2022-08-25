@@ -10,7 +10,7 @@ public enum AvailablePlans {
     SIMPLE_START_CHALLENGE("Simple Start Challenge", "Simple Start Challenge"),
     PROGRESSIVE_BODYWEIGHT("Progressive Bodyweight", "28 days • 6-7x a week"),
     TONED_UPPER_BODY("Toned Upper Body", "28 days • 2-4x a week"),
-    STRONG_GLUTES_THIGHS("Strong Glutes & Thighs", "28 days • 2-4x a week"),
+    STRONG_GLUTES_THIGHS("Strong Glutes & Thighs ", "28 days • 2-4x a week"),
     INTRO_TO_MACRO_TRACKING("Intro to Macro Tracking", "28 days • Daily"),
     TOTAL_BODY_POWER("Total Body Power", "28 days • 4x a week"),
     ELEVEN_THOUSAND_STEPS_A_DAY("11,000 Steps a Day", "28 days • Daily"),

@@ -235,6 +235,7 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         PlansPageBase plansPage = (PlansPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.PLANS);
+        Assert.assertTrue(plansPage.isPageOpened(), "Plans page isn't opened");
         softAssert.assertTrue(plansPage.isElementByTextPresent(IConstants.FIND_A_PLAN),
                 String.format("\"%s\" text isn't present", IConstants.FIND_A_PLAN));
         softAssert.assertTrue(plansPage.isElementByTextPresent(IConstants.PLANS_DESCRIPTION),

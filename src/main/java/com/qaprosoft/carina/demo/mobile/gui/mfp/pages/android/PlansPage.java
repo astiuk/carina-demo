@@ -33,18 +33,19 @@ public class PlansPage extends PlansPageBase {
 
     @Override
     public boolean isAvailablePlansCardNamePresent(AvailablePlans availablePlan) {
-        swipe(elementByText.format(availablePlan.getPlanName()), IMobileUtils.Direction.VERTICAL, 5, 1000);
+        swipe(elementByText.format(availablePlan.getPlanName()), Direction.VERTICAL, 5, 1000);
         return elementByText.format(availablePlan.getPlanName()).isPresent(3);
     }
 
     @Override
     public boolean isAvailablePlansCardDetailsPresent(AvailablePlans availablePlan) {
-        swipe(elementByText.format(availablePlan.getPlanDetails()), IMobileUtils.Direction.VERTICAL, 5, 1000);
+        swipe(elementByText.format(availablePlan.getPlanDetails()), Direction.VERTICAL, 5, 1000);
         return elementByText.format(availablePlan.getPlanDetails()).isPresent(3);
     }
 
     @Override
     public boolean isTakeTheSurveyLinkPresent() {
+        swipe(takeTheSurveyLink, Direction.VERTICAL, 26, 500);
         return takeTheSurveyLink.isPresent(3);
     }
 

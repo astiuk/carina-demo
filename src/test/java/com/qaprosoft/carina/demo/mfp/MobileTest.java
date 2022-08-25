@@ -6,6 +6,7 @@ import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.qaprosoft.carina.demo.mobile.enums.AvailablePlans;
 import com.qaprosoft.carina.demo.mobile.enums.BottomNavigatorButtons;
 import com.qaprosoft.carina.demo.mobile.enums.PlanFilterRadioButtons;
 import com.qaprosoft.carina.demo.mobile.enums.PremiumOptions;
@@ -252,6 +253,30 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
         softAssert.assertTrue(plansPage.isElementByTextPresent(IConstants.PLANS_LET_US_KNOW),
                 String.format("\"%s\" text isn't present", IConstants.PLANS_LET_US_KNOW));
         softAssert.assertTrue(plansPage.isTakeTheSurveyLinkPresent(), "Take The Survey link isn't present");
+        softAssert.assertAll();
+    }
+
+    @Test
+    @MethodOwner(owner = "Hostiuk")
+    @TestRailCases(testCasesId = "10")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void plansFilterTest() {
+        SoftAssert softAssert = new SoftAssert();
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        PlansPageBase plansPage = (PlansPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.PLANS);
+        Assert.assertTrue(plansPage.isPageOpened(), "Plans page isn't opened");
+        for(PlanFilterRadioButtons button : PlanFilterRadioButtons.values()) {
+            plansPage.clickFilterButton(button);
+            for(AvailablePlans plan : button.getFilterPlans()) {
+                softAssert.assertTrue(plansPage.isAvailablePlansCardNamePresent(plan),
+                        String.format("\"%s\" name isn't present", plan.getPlanName()));
+                softAssert.assertTrue(plansPage.isAvailablePlansCardDetailsPresent(plan),
+                        String.format("\"%s\" details isn't present", plan.getPlanDetails()));
+            }
+        }
         softAssert.assertAll();
     }
 

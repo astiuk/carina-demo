@@ -33,6 +33,9 @@ public class PlansPage extends PlansPageBase {
     @FindBy(id = "com.myfitnesspal.android.plans:id/action_show_plans_hub")
     private ExtendedWebElement showPlansButton;
 
+    @FindBy(xpath = "//*[contains(@text, 'Available Plans')]/following-sibling::androidx.cardview.widget.CardView//android.widget.TextView[1]")
+    private ExtendedWebElement firstAvailablePlanName;
+
     public PlansPage(WebDriver driver) {
         super(driver);
     }
@@ -54,6 +57,12 @@ public class PlansPage extends PlansPageBase {
         swipe(elementByText.format(availablePlan.getPlanName()), Direction.VERTICAL, 5, 500);
         elementByText.format(availablePlan.getPlanName()).click(3);
         return initPage(getDriver(), PlanDetailsPageBase.class);
+    }
+
+    @Override
+    public AvailablePlans getFirstAvailablePlan() {
+        swipe(firstAvailablePlanName, Direction.VERTICAL, 3, 500);
+        return AvailablePlans.getPlanByName(firstAvailablePlanName.getText());
     }
 
     @Override

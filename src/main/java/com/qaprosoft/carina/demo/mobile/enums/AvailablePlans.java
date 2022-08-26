@@ -1,5 +1,8 @@
 package com.qaprosoft.carina.demo.mobile.enums;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum AvailablePlans {
     LOW_IMPACT_STRENGTH("Low Impact Strength", "28 days • 3x a week"),
     HIGH_PROTEIN("High Protein", "28 days • Daily"),
@@ -26,6 +29,14 @@ public enum AvailablePlans {
     private String planName;
     private String planDetails;
 
+    private static final Map<String, AvailablePlans> lookup = new HashMap<String, AvailablePlans>();
+
+    static {
+        for (AvailablePlans d : AvailablePlans.values()) {
+            lookup.put(d.getPlanName(), d);
+        }
+    }
+
     AvailablePlans(String planName, String planDetails) {
         this.planName = planName;
         this.planDetails = planDetails;
@@ -37,5 +48,9 @@ public enum AvailablePlans {
 
     public String getPlanDetails() {
         return planDetails;
+    }
+
+    public static AvailablePlans getPlanByName(String name) {
+        return lookup.get(name);
     }
 }

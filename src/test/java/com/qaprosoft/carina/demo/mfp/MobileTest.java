@@ -285,24 +285,18 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
     @TestRailCases(testCasesId = "11")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void twoPlansSelectTest() {
-        AvailablePlans firstPlan = AvailablePlans.LOW_CARB;
-        AvailablePlans secondPlan = AvailablePlans.HIGH_PROTEIN;
+        AvailablePlans firstPlan;
+        AvailablePlans secondPlan;
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
         loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         PlansPageBase plansPage = (PlansPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.PLANS);
 
-        if (commonPage.isItemByTextPresent(firstPlan.getPlanName())) {
-            AvailablePlans temp = firstPlan;
-            firstPlan = secondPlan;
-            secondPlan = temp;
-        }
-
         plansPage.clickShowPlansButton();
-        plansPage.clickFilterButton(PlanFilterRadioButtons.MEAL_PLAN);
+        firstPlan = plansPage.getFirstAvailablePlan();
         plansPage.selectPlan(firstPlan);
-        plansPage.clickFilterButton(PlanFilterRadioButtons.MEAL_PLAN);
+        secondPlan = plansPage.getFirstAvailablePlan();
         plansPage.selectPlan(secondPlan);
         Assert.assertFalse(commonPage.isItemByTextPresent(firstPlan.getPlanName()) &&
                         !commonPage.isItemByTextPresent(IConstants.AVAILABLE_PLANS),

@@ -31,6 +31,11 @@ public class PlansPage extends PlansPageBase {
     }
 
     @Override
+    public AvailablePlans getFirstAvailablePlan() {
+        throw new NotImplementedException("Method is not implement for IOS");
+    }
+
+    @Override
     public void clickWelcomeToPlanActionButton() {
         throw new NotImplementedException("Method is not implement for IOS");
     }

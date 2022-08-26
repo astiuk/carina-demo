@@ -36,12 +36,7 @@ public class PlansPage extends PlansPageBase {
     }
 
     @Override
-    public void clickWelcomeToPlanActionButton() {
-        throw new NotImplementedException("Method is not implement for IOS");
-    }
-
-    @Override
-    public void clickShowPlansButton() {
+    public void clickPlusButton() {
         throw new NotImplementedException("Method is not implement for IOS");
     }
 

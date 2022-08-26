@@ -28,12 +28,7 @@ public class PlanDetailsPage extends PlanDetailsPageBase {
     }
 
     @Override
-    public boolean isNewPlanContinueButtonPresent() {
-        return newPlanContinueButton.isPresent(2);
-    }
-
-    @Override
-    public PlansPageBase clickNewPlanContinueButton() {
+    public PlansPageBase clickNewPlanContinueButtonIfPresent() {
         newPlanContinueButton.clickIfPresent(2);
         return initPage(getDriver(), PlansPageBase.class);
     }

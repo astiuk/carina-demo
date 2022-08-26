@@ -20,9 +20,7 @@ public abstract class PlansPageBase extends AbstractPage implements IMobileUtils
 
     public abstract AvailablePlans getFirstAvailablePlan();
 
-    public abstract void clickWelcomeToPlanActionButton();
-
-    public abstract void clickShowPlansButton();
+    public abstract void clickPlusButton();
 
     public abstract boolean isTakeTheSurveyLinkPresent();
 

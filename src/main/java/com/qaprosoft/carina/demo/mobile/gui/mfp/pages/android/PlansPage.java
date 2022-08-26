@@ -12,8 +12,8 @@ import org.openqa.selenium.support.FindBy;
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = PlansPageBase.class)
 public class PlansPage extends PlansPageBase {
 
-    @FindBy(id = "com.myfitnesspal.android.plans:id/textTitle")
-    private ExtendedWebElement findAPlanTitle;
+    @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/toolbar']/*[@text='Plans']")
+    private ExtendedWebElement planTitle;
 
     @FindBy(xpath = "//*[contains(@text,'%s')]")
     private ExtendedWebElement elementByText;
@@ -28,10 +28,10 @@ public class PlansPage extends PlansPageBase {
     private ExtendedWebElement filterRadioButton;
 
     @FindBy(id = "com.myfitnesspal.android.plans:id/welcomeActionBtn")
-    private ExtendedWebElement welcomeToPlanActionButton;
+    private ExtendedWebElement letsDoThisButton;
 
     @FindBy(id = "com.myfitnesspal.android.plans:id/action_show_plans_hub")
-    private ExtendedWebElement showPlansButton;
+    private ExtendedWebElement plusButton;
 
     @FindBy(xpath = "//*[contains(@text, 'Available Plans')]/following-sibling::androidx.cardview.widget.CardView//android.widget.TextView[1]")
     private ExtendedWebElement firstAvailablePlanName;
@@ -66,13 +66,8 @@ public class PlansPage extends PlansPageBase {
     }
 
     @Override
-    public void clickWelcomeToPlanActionButton() {
-        welcomeToPlanActionButton.click(3);
-    }
-
-    @Override
-    public void clickShowPlansButton() {
-        showPlansButton.clickIfPresent(2);
+    public void clickPlusButton() {
+        plusButton.clickIfPresent(2);
     }
 
     @Override
@@ -104,16 +99,16 @@ public class PlansPage extends PlansPageBase {
 
     @Override
     public void selectPlan(AvailablePlans plan) {
-        showPlansButton.clickIfPresent(2);
+        plusButton.clickIfPresent(2);
         PlanDetailsPageBase planDetailsPage = clickAvailablePlan(plan);
         planDetailsPage.clickStarPlanButton();
-        planDetailsPage.clickNewPlanContinueButton();
-        welcomeToPlanActionButton.click(2);
-        clickShowPlansButton();
+        planDetailsPage.clickNewPlanContinueButtonIfPresent();
+        letsDoThisButton.click(2);
+        clickPlusButton();
     }
 
     @Override
     public boolean isPageOpened() {
-        return findAPlanTitle.isPresent(3);
+        return planTitle.isPresent(3);
     }
 }

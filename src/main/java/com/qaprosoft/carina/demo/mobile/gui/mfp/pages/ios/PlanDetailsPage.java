@@ -18,12 +18,7 @@ public class PlanDetailsPage extends PlanDetailsPageBase {
     }
 
     @Override
-    public boolean isNewPlanContinueButtonPresent() {
-        throw new NotImplementedException("Method is not implement for IOS");
-    }
-
-    @Override
-    public PlansPageBase clickNewPlanContinueButton() {
+    public PlansPageBase clickNewPlanContinueButtonIfPresent() {
         throw new NotImplementedException("Method is not implement for IOS");
     }
 }

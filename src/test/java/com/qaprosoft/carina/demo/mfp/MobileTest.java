@@ -292,8 +292,9 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         PlansPageBase plansPage = (PlansPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.PLANS);
+        Assert.assertTrue(plansPage.isPageOpened(), "Plan page isn't opened");
 
-        plansPage.clickShowPlansButton();
+        plansPage.clickPlusButton();
         firstPlan = plansPage.getFirstAvailablePlan();
         plansPage.selectPlan(firstPlan);
         secondPlan = plansPage.getFirstAvailablePlan();

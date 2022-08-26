@@ -11,7 +11,6 @@ import com.qaprosoft.carina.demo.mobile.enums.BottomNavigatorButtons;
 import com.qaprosoft.carina.demo.mobile.enums.PlanFilterRadioButtons;
 import com.qaprosoft.carina.demo.mobile.enums.PremiumOptions;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.*;
-import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.ios.PlansPage;
 import com.qaprosoft.carina.demo.mobile.interfaces.IConstants;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import org.testng.Assert;
@@ -278,6 +277,29 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
             }
         }
         softAssert.assertAll();
+    }
+
+
+    @Test
+    @MethodOwner(owner = "Hostiuk")
+    @TestRailCases(testCasesId = "10")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void twoPlansSelectTest() {
+        SoftAssert softAssert = new SoftAssert();
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        PlansPageBase plansPage = (PlansPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.PLANS);
+        Assert.assertTrue(plansPage.isPageOpened(), "Plans page isn't opened");
+        plansPage.clickFilterButton(PlanFilterRadioButtons.MEAL_PLAN);
+        // MOVE TO METHOD SelectPlan(AvailablePlans plan)
+        PlanDetailsPageBase planDetailsPage = plansPage.clickAvailablePlan(AvailablePlans.LOW_CARB);
+        planDetailsPage.clickStarPlanButton();
+        // IF Continue present, press Continue
+        plansPage.clickWelcomeToPlanActionButton();
+        plansPage.clickShowPlansButton();
+        // MOVE TO METHOD SelectPlan(AvailablePlans plan)
     }
 
 }

@@ -1,10 +1,10 @@
 package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
-import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.mobile.enums.AvailablePlans;
 import com.qaprosoft.carina.demo.mobile.enums.PlanFilterRadioButtons;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlanDetailsPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlansPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -28,6 +28,12 @@ public class PlansPage extends PlansPageBase {
     @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android.plans:id/chipGroupFilterTags']/*[@text='%s']")
     private ExtendedWebElement filterRadioButton;
 
+    @FindBy(id = "com.myfitnesspal.android.plans:id/welcomeActionBtn")
+    private ExtendedWebElement welcomeToPlanActionButton;
+
+    @FindBy(id = "com.myfitnesspal.android.plans:id/action_show_plans_hub")
+    private ExtendedWebElement showPlansButton;
+
     public PlansPage(WebDriver driver) {
         super(driver);
     }
@@ -42,6 +48,23 @@ public class PlansPage extends PlansPageBase {
     public boolean isAvailablePlansCardDetailsPresent(AvailablePlans availablePlan) {
         swipe(elementByText.format(availablePlan.getPlanDetails()), Direction.VERTICAL, 5, 500);
         return elementByText.format(availablePlan.getPlanDetails()).isPresent(3);
+    }
+
+    @Override
+    public PlanDetailsPageBase clickAvailablePlan(AvailablePlans availablePlan) {
+        swipe(elementByText.format(availablePlan.getPlanName()), Direction.VERTICAL, 5, 500);
+        elementByText.format(availablePlan.getPlanName()).isPresent(3);
+        return initPage(getDriver(), PlanDetailsPageBase.class);
+    }
+
+    @Override
+    public void clickWelcomeToPlanActionButton() {
+        welcomeToPlanActionButton.click(3);
+    }
+
+    @Override
+    public void clickShowPlansButton() {
+        showPlansButton.click(3);
     }
 
     @Override

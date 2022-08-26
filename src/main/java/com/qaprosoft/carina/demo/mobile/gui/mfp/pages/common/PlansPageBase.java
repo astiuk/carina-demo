@@ -16,6 +16,12 @@ public abstract class PlansPageBase extends AbstractPage implements IMobileUtils
 
     public abstract boolean isAvailablePlansCardDetailsPresent(AvailablePlans availablePlan);
 
+    public abstract PlanDetailsPageBase clickAvailablePlan(AvailablePlans availablePlan);
+
+    public abstract void clickWelcomeToPlanActionButton();
+
+    public abstract void clickShowPlansButton();
+
     public abstract boolean isTakeTheSurveyLinkPresent();
 
     public abstract boolean isFilterByTextPresent();

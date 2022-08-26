@@ -22,6 +22,7 @@ public class PlanDetailsPage extends PlanDetailsPageBase {
 
     @Override
     public PlansPageBase clickStarPlanButton() {
+        swipe(startPlanButton, Direction.VERTICAL, 5, 500);
         startPlanButton.click(3);
         return initPage(getDriver(), PlansPageBase.class);
     }
@@ -33,7 +34,7 @@ public class PlanDetailsPage extends PlanDetailsPageBase {
 
     @Override
     public PlansPageBase clickNewPlanContinueButton() {
-        newPlanContinueButton.click(3);
+        newPlanContinueButton.clickIfPresent(2);
         return initPage(getDriver(), PlansPageBase.class);
     }
 }

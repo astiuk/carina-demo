@@ -282,24 +282,34 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
 
     @Test
     @MethodOwner(owner = "Hostiuk")
-    @TestRailCases(testCasesId = "10")
+    @TestRailCases(testCasesId = "11")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void twoPlansSelectTest() {
-        SoftAssert softAssert = new SoftAssert();
+        AvailablePlans firstPlan = AvailablePlans.LOW_CARB;
+        AvailablePlans secondPlan = AvailablePlans.HIGH_PROTEIN;
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
         loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         PlansPageBase plansPage = (PlansPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.PLANS);
-        Assert.assertTrue(plansPage.isPageOpened(), "Plans page isn't opened");
-        plansPage.clickFilterButton(PlanFilterRadioButtons.MEAL_PLAN);
-        // MOVE TO METHOD SelectPlan(AvailablePlans plan)
-        PlanDetailsPageBase planDetailsPage = plansPage.clickAvailablePlan(AvailablePlans.LOW_CARB);
-        planDetailsPage.clickStarPlanButton();
-        // IF Continue present, press Continue
-        plansPage.clickWelcomeToPlanActionButton();
+
+        if (commonPage.isItemByTextPresent(firstPlan.getPlanName())) {
+            AvailablePlans temp = firstPlan;
+            firstPlan = secondPlan;
+            secondPlan = temp;
+        }
+
         plansPage.clickShowPlansButton();
-        // MOVE TO METHOD SelectPlan(AvailablePlans plan)
+        plansPage.clickFilterButton(PlanFilterRadioButtons.MEAL_PLAN);
+        plansPage.selectPlan(firstPlan);
+        plansPage.clickFilterButton(PlanFilterRadioButtons.MEAL_PLAN);
+        plansPage.selectPlan(secondPlan);
+        Assert.assertFalse(commonPage.isItemByTextPresent(firstPlan.getPlanName()) &&
+                        !commonPage.isItemByTextPresent(IConstants.AVAILABLE_PLANS),
+                String.format("After adding new plan, old plan \"%s\" is still present",
+                        firstPlan.getPlanName()));
+        Assert.assertTrue(commonPage.isItemByTextPresent(secondPlan.getPlanName()),
+                String.format("New plan \"%s\" isn't present", secondPlan.getPlanName()));
     }
 
 }

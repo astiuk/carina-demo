@@ -15,7 +15,6 @@ public class PlansPage extends PlansPageBase {
     @FindBy(id = "com.myfitnesspal.android.plans:id/textTitle")
     private ExtendedWebElement findAPlanTitle;
 
-    //@FindBy(xpath = "//*[@text='%s']")
     @FindBy(xpath = "//*[contains(@text,'%s')]")
     private ExtendedWebElement elementByText;
 
@@ -53,7 +52,7 @@ public class PlansPage extends PlansPageBase {
     @Override
     public PlanDetailsPageBase clickAvailablePlan(AvailablePlans availablePlan) {
         swipe(elementByText.format(availablePlan.getPlanName()), Direction.VERTICAL, 5, 500);
-        elementByText.format(availablePlan.getPlanName()).isPresent(3);
+        elementByText.format(availablePlan.getPlanName()).click(3);
         return initPage(getDriver(), PlanDetailsPageBase.class);
     }
 
@@ -64,7 +63,7 @@ public class PlansPage extends PlansPageBase {
 
     @Override
     public void clickShowPlansButton() {
-        showPlansButton.click(3);
+        showPlansButton.clickIfPresent(2);
     }
 
     @Override
@@ -92,6 +91,16 @@ public class PlansPage extends PlansPageBase {
     public boolean isElementByTextPresent(String text) {
         swipe(elementByText.format(text), Direction.VERTICAL, 26, 500);
         return elementByText.format(text).isPresent(3);
+    }
+
+    @Override
+    public void selectPlan(AvailablePlans plan) {
+        showPlansButton.clickIfPresent(2);
+        PlanDetailsPageBase planDetailsPage = clickAvailablePlan(plan);
+        planDetailsPage.clickStarPlanButton();
+        planDetailsPage.clickNewPlanContinueButton();
+        welcomeToPlanActionButton.click(2);
+        clickShowPlansButton();
     }
 
     @Override

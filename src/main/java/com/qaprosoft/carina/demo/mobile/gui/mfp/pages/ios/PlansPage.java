@@ -64,4 +64,9 @@ public class PlansPage extends PlansPageBase {
     public boolean isElementByTextPresent(String text) {
         throw new NotImplementedException("Method is not implement for IOS");
     }
+
+    @Override
+    public void selectPlan(AvailablePlans plan) {
+        throw new NotImplementedException("Method is not implement for IOS");
+    }
 }

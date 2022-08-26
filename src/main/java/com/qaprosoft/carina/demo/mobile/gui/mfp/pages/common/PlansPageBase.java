@@ -31,4 +31,6 @@ public abstract class PlansPageBase extends AbstractPage implements IMobileUtils
     public abstract void clickFilterButton(PlanFilterRadioButtons button);
 
     public abstract boolean isElementByTextPresent(String text);
+
+    public abstract void selectPlan(AvailablePlans plan);
 }

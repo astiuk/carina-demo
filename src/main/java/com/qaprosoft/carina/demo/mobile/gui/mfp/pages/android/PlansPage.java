@@ -1,10 +1,10 @@
 package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
-import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.mobile.enums.AvailablePlans;
 import com.qaprosoft.carina.demo.mobile.enums.PlanFilterRadioButtons;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlanDetailsPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlansPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -12,10 +12,9 @@ import org.openqa.selenium.support.FindBy;
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = PlansPageBase.class)
 public class PlansPage extends PlansPageBase {
 
-    @FindBy(id = "com.myfitnesspal.android.plans:id/textTitle")
-    private ExtendedWebElement findAPlanTitle;
+    @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/toolbar']/*[@text='Plans']")
+    private ExtendedWebElement planTitle;
 
-    //@FindBy(xpath = "//*[@text='%s']")
     @FindBy(xpath = "//*[contains(@text,'%s')]")
     private ExtendedWebElement elementByText;
 
@@ -27,6 +26,15 @@ public class PlansPage extends PlansPageBase {
 
     @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android.plans:id/chipGroupFilterTags']/*[@text='%s']")
     private ExtendedWebElement filterRadioButton;
+
+    @FindBy(id = "com.myfitnesspal.android.plans:id/welcomeActionBtn")
+    private ExtendedWebElement letsDoThisButton;
+
+    @FindBy(id = "com.myfitnesspal.android.plans:id/action_show_plans_hub")
+    private ExtendedWebElement plusButton;
+
+    @FindBy(xpath = "//*[contains(@text, 'Available Plans')]/following-sibling::androidx.cardview.widget.CardView//android.widget.TextView[1]")
+    private ExtendedWebElement firstAvailablePlanName;
 
     public PlansPage(WebDriver driver) {
         super(driver);
@@ -42,6 +50,24 @@ public class PlansPage extends PlansPageBase {
     public boolean isAvailablePlansCardDetailsPresent(AvailablePlans availablePlan) {
         swipe(elementByText.format(availablePlan.getPlanDetails()), Direction.VERTICAL, 5, 500);
         return elementByText.format(availablePlan.getPlanDetails()).isPresent(3);
+    }
+
+    @Override
+    public PlanDetailsPageBase clickAvailablePlan(AvailablePlans availablePlan) {
+        swipe(elementByText.format(availablePlan.getPlanName()), Direction.VERTICAL, 5, 500);
+        elementByText.format(availablePlan.getPlanName()).click(3);
+        return initPage(getDriver(), PlanDetailsPageBase.class);
+    }
+
+    @Override
+    public AvailablePlans getFirstAvailablePlan() {
+        swipe(firstAvailablePlanName, Direction.VERTICAL, 3, 500);
+        return AvailablePlans.getPlanByName(firstAvailablePlanName.getText());
+    }
+
+    @Override
+    public void clickPlusButton() {
+        plusButton.clickIfPresent(2);
     }
 
     @Override
@@ -72,7 +98,17 @@ public class PlansPage extends PlansPageBase {
     }
 
     @Override
+    public void selectPlan(AvailablePlans plan) {
+        plusButton.clickIfPresent(2);
+        PlanDetailsPageBase planDetailsPage = clickAvailablePlan(plan);
+        planDetailsPage.clickStarPlanButton();
+        planDetailsPage.clickNewPlanContinueButtonIfPresent();
+        letsDoThisButton.click(2);
+        clickPlusButton();
+    }
+
+    @Override
     public boolean isPageOpened() {
-        return findAPlanTitle.isPresent(3);
+        return planTitle.isPresent(3);
     }
 }

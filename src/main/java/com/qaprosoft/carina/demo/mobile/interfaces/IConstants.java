@@ -25,4 +25,6 @@ public interface IConstants {
     String LOOKING_FOR_MORE_PLANS = "Looking for more plans?";
     String PLANS_LET_US_KNOW = "Let us know what type of plan you’d like to see in the future.";
 
+    String AVAILABLE_PLANS = "Available Plans";
+
 }

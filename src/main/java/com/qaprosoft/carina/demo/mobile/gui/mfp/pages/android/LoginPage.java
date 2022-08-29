@@ -129,7 +129,7 @@ public class LoginPage extends LoginPageBase {
         Assert.assertTrue(isLoginButtonPresent(), "Login button isn't present");
 
         typeEmail(email);
-        Assert.assertEquals(getEmailText(), R.TESTDATA.get("email"), "Email isn't typed");
+        Assert.assertEquals(getEmailText(), R.TESTDATA.getDecrypted("email"), "Email isn't typed");
         typePassword(password);
         clickLoginButton();
         HomeScreenModalBase homeScreenModal = initPage(getDriver(), HomeScreenModalBase.class);

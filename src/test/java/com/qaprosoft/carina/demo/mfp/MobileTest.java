@@ -24,7 +24,7 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void userLoginTest() {
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        loginPage.login(R.TESTDATA.getDecrypted("email"), R.TESTDATA.getDecrypted("password"));
     }
 
     @Test
@@ -33,7 +33,7 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void bottomNavigationButtonsTest() {
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        loginPage.login(R.TESTDATA.getDecrypted("email"), R.TESTDATA.getDecrypted("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         AbstractPage dashboardPage = commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.DASHBOARD);
@@ -52,7 +52,7 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void goalCaloriesEqualsRemainCaloriesTest() {
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        loginPage.login(R.TESTDATA.getDecrypted("email"), R.TESTDATA.getDecrypted("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         DiaryPageBase diaryPage = (DiaryPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.DIARY);
@@ -67,7 +67,7 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void caloriesValidationOnQuickAddTest() {
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        loginPage.login(R.TESTDATA.getDecrypted("email"), R.TESTDATA.getDecrypted("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         DiaryPageBase diaryPage = (DiaryPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.DIARY);
@@ -83,7 +83,7 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
     public void customDashboardTest() {
         SoftAssert softAssert = new SoftAssert();
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        loginPage.login(R.TESTDATA.getDecrypted("email"), R.TESTDATA.getDecrypted("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         DiaryPageBase diaryPage = (DiaryPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.DIARY);
@@ -157,7 +157,7 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void customSummaryNutrientsTest() {
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        loginPage.login(R.TESTDATA.getDecrypted("email"), R.TESTDATA.getDecrypted("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         DiaryPageBase diaryPage = (DiaryPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.DIARY);
@@ -187,7 +187,7 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
     public void moreMenuOptionsValidationTest() {
         SoftAssert softAssert = new SoftAssert();
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        loginPage.login(R.TESTDATA.getDecrypted("email"), R.TESTDATA.getDecrypted("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         MoreMenuPageBase moreMenuPage = (MoreMenuPageBase) commonPage.clickBottomNavigatorButton(
@@ -207,7 +207,7 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
     public void myPremiumToolsPageValidationTest() {
         SoftAssert softAssert = new SoftAssert();
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        loginPage.login(R.TESTDATA.getDecrypted("email"), R.TESTDATA.getDecrypted("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         MoreMenuPageBase moreMenuPage = (MoreMenuPageBase) commonPage.clickBottomNavigatorButton(
@@ -231,7 +231,7 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
     public void plansPageValidationTest() {
         SoftAssert softAssert = new SoftAssert();
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        loginPage.login(R.TESTDATA.getDecrypted("email"), R.TESTDATA.getDecrypted("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         PlansPageBase plansPage = (PlansPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.PLANS);
@@ -262,7 +262,7 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
     public void plansFilterTest() {
         SoftAssert softAssert = new SoftAssert();
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        loginPage.login(R.TESTDATA.getDecrypted("email"), R.TESTDATA.getDecrypted("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         PlansPageBase plansPage = (PlansPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.PLANS);
@@ -288,7 +288,7 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
         AvailablePlans firstPlan;
         AvailablePlans secondPlan;
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        loginPage.login(R.TESTDATA.getDecrypted("email"), R.TESTDATA.getDecrypted("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         PlansPageBase plansPage = (PlansPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.PLANS);

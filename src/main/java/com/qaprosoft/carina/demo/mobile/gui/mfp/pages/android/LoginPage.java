@@ -1,5 +1,7 @@
 package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.android;
 
+import com.qaprosoft.carina.core.foundation.commons.SpecialKeywords;
+import com.qaprosoft.carina.core.foundation.crypto.CryptoTool;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
@@ -10,6 +12,8 @@ import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.WelcomePageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
+
+import java.util.regex.Pattern;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = LoginPageBase.class)
 public class LoginPage extends LoginPageBase {
@@ -129,7 +133,11 @@ public class LoginPage extends LoginPageBase {
         Assert.assertTrue(isLoginButtonPresent(), "Login button isn't present");
 
         typeEmail(email);
-        Assert.assertEquals(getEmailText(), R.TESTDATA.get("email"), "Email isn't typed");
+        CryptoTool cryptoTool = new CryptoTool(R.CONFIG.get("crypto_key_path"));
+        Pattern CRYPTO_PATTERN = Pattern.compile(SpecialKeywords.CRYPT);
+        String decryptedEmail = cryptoTool.decryptByPattern(email, CRYPTO_PATTERN);
+
+        Assert.assertEquals(getEmailText(), decryptedEmail, "Email isn't typed");
         typePassword(password);
         clickLoginButton();
         HomeScreenModalBase homeScreenModal = initPage(getDriver(), HomeScreenModalBase.class);

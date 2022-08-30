@@ -13,4 +13,11 @@ public abstract class MyItemsPageBase extends AbstractPage {
     public abstract AbstractPage clickCreateButton(MyItemsCreateButtons button);
 
     public abstract String getItemTitle(MyItemsCreateButtons button);
+
+    public abstract void createFoodWithParameters(String brandName,
+                                                  String description,
+                                                  int servingSize,
+                                                  String servingSizeUnits,
+                                                  int servingsPerContainer,
+                                                  double calories);
 }

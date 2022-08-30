@@ -23,4 +23,14 @@ public class MyItemsPage extends MyItemsPageBase {
     public String getItemTitle(MyItemsCreateButtons button) {
         throw new NotImplementedException("Method is not implement for IOS");
     }
+
+    @Override
+    public void createFoodWithParameters(String brandName,
+                                         String description,
+                                         int servingSize,
+                                         String servingSizeUnits,
+                                         int servingsPerContainer,
+                                         double calories) {
+        throw new NotImplementedException("Method is not implement for IOS");
+    }
 }

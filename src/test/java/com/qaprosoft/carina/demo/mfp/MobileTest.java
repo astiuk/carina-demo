@@ -312,9 +312,7 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
         loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
 
-        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
-        DashboardPageBase dashboardPage = (DashboardPageBase) commonPage.clickBottomNavigatorButton(
-                BottomNavigatorButtons.DASHBOARD);
+        DashboardPageBase dashboardPage = initPage(getDriver(), DashboardPageBase.class);
         Assert.assertTrue(dashboardPage.isPageOpened(), "Dashboard page isn't opened");
         UserProfilePageBase userProfilePage = dashboardPage.openUserProfile();
         Assert.assertTrue(userProfilePage.isPageOpened(), "User Profile page isn't opened");
@@ -323,15 +321,8 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(myItemsPage.isPageOpened(), "My Items page isn't opened");
         String initialFoodCount = myItemsPage.getItemTitle(MyItemsCreateButtons.FOODS);
         int expectedFoodCount = (Integer.parseInt(initialFoodCount.replaceAll("[^0-9]", "")) + 1);
-        CreateFoodPageBase createFoodPage = (CreateFoodPageBase) myItemsPage.clickCreateButton(MyItemsCreateButtons.FOODS);
-        Assert.assertTrue(createFoodPage.isPageOpened(), "Create Food page isn't opened");
-        createFoodPage.fillAllFields("test", "test", 1, "g", 1);
-        createFoodPage.clickNextButton();
-        createFoodPage.typeNutritionFact(CreateFoodNutritionFacts.CALORIES, 1);
-        createFoodPage.clickSaveButton();
-        createFoodPage.clickSaveButton();
-        createFoodPage.clickNoThanksButton();
+        myItemsPage.createFoodWithParameters("test", "test", 1, "g", 1, 1);
         int actualFoodCount = Integer.parseInt(myItemsPage.getItemTitle(MyItemsCreateButtons.FOODS).replaceAll("[^0-9]", ""));
-        Assert.assertEquals(actualFoodCount, expectedFoodCount, "Food count didn't increased by 1");
+        Assert.assertEquals(actualFoodCount, expectedFoodCount, "Food count didn't increased by 1 after creating new food");
     }
 }

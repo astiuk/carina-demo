@@ -3,10 +3,13 @@ package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.android;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.qaprosoft.carina.demo.mobile.enums.CreateFoodNutritionFacts;
 import com.qaprosoft.carina.demo.mobile.enums.MyItemsCreateButtons;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.CreateFoodPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.MyItemsPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = MyItemsPageBase.class)
 public class MyItemsPage extends MyItemsPageBase {
@@ -30,6 +33,23 @@ public class MyItemsPage extends MyItemsPageBase {
     @Override
     public String getItemTitle(MyItemsCreateButtons button) {
         return itemTitle.format(button.getRecourseId()).getText();
+    }
+
+    @Override
+    public void createFoodWithParameters(String brandName,
+                                         String description,
+                                         int servingSize,
+                                         String servingSizeUnits,
+                                         int servingsPerContainer,
+                                         double calories) {
+        CreateFoodPageBase createFoodPage = (CreateFoodPageBase) clickCreateButton(MyItemsCreateButtons.FOODS);
+        Assert.assertTrue(createFoodPage.isPageOpened(), "Create Food page isn't opened");
+        createFoodPage.fillAllFields(brandName, description, servingSize, servingSizeUnits, servingsPerContainer);
+        createFoodPage.clickNextButton();
+        createFoodPage.typeNutritionFact(CreateFoodNutritionFacts.CALORIES, calories);
+        createFoodPage.clickSaveButton();
+        createFoodPage.clickSaveButton();
+        createFoodPage.clickNoThanksButton();
     }
 
     @Override

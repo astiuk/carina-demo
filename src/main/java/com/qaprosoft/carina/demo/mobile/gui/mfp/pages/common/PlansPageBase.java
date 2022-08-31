@@ -33,4 +33,10 @@ public abstract class PlansPageBase extends AbstractPage implements IMobileUtils
     public abstract boolean isElementByTextPresent(String text);
 
     public abstract void selectPlan(AvailablePlans plan);
+
+    public abstract void clickBackArrowButton();
+
+    public abstract void clickThreeDotsButton();
+
+    public abstract EndPlanPageBase clickEndPlanDropdownButton();
 }

@@ -2,8 +2,10 @@ package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.enums.AvailablePlans;
 import com.qaprosoft.carina.demo.mobile.enums.PlanFilterRadioButtons;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.EndPlanPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlanDetailsPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlansPageBase;
 import org.openqa.selenium.WebDriver;
@@ -35,6 +37,15 @@ public class PlansPage extends PlansPageBase {
 
     @FindBy(xpath = "//*[contains(@text, 'Available Plans')]/following-sibling::androidx.cardview.widget.CardView//android.widget.TextView[1]")
     private ExtendedWebElement firstAvailablePlanName;
+
+    @ExtendedFindBy(accessibilityId = "Navigate up")
+    private ExtendedWebElement backArrowButton;
+
+    @FindBy(id = "com.myfitnesspal.android.plans:id/task_day_more_menu")
+    private ExtendedWebElement threeDotsButton;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='End Plan']")
+    private ExtendedWebElement endPlanDropdownButton;
 
     public PlansPage(WebDriver driver) {
         super(driver);
@@ -105,6 +116,22 @@ public class PlansPage extends PlansPageBase {
         planDetailsPage.clickNewPlanContinueButtonIfPresent();
         letsDoThisButton.click(2);
         clickPlusButton();
+    }
+
+    @Override
+    public void clickBackArrowButton() {
+        backArrowButton.click(3);
+    }
+
+    @Override
+    public void clickThreeDotsButton() {
+        threeDotsButton.click(3);
+    }
+
+    @Override
+    public EndPlanPageBase clickEndPlanDropdownButton() {
+        endPlanDropdownButton.click(3);
+        return initPage(getDriver(), EndPlanPageBase.class);
     }
 
     @Override

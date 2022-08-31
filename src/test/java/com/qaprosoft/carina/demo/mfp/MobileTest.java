@@ -325,4 +325,42 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
         int actualFoodCount = Integer.parseInt(myItemsPage.getItemTitle(MyItemsCreateButtons.FOODS).replaceAll("[^0-9]", ""));
         Assert.assertEquals(actualFoodCount, expectedFoodCount, "Food count didn't increased by 1 after creating new food");
     }
+
+
+    @Test
+    @MethodOwner(owner = "Hostiuk")
+    @TestRailCases(testCasesId = "13")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void endPlanSheetValidationTest() {
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        PlansPageBase plansPage = (PlansPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.PLANS);
+        Assert.assertTrue(plansPage.isPageOpened(), "Plan page isn't opened");
+
+        // check if plan is selected
+        if(plansPage.isFilterByTextPresent()) {
+            AvailablePlans plan = plansPage.getFirstAvailablePlan();
+            plansPage.selectPlan(plan);
+            plansPage.clickAvailablePlan(plan);
+            plansPage.clickBackArrowButton();
+        }
+        plansPage.clickThreeDotsButton();
+        EndPlanPageBase endPlanPage = plansPage.clickEndPlanDropdownButton();
+        endPlanPage.checkReasonCheckbox(EndPlanReasons.I_FORGOT_ABOUT_IT);
+        Assert.assertTrue(endPlanPage.isReasonCheckboxChecked(EndPlanReasons.I_FORGOT_ABOUT_IT),
+                String.format("After check, \"%s\" is still not checked", EndPlanReasons.I_FORGOT_ABOUT_IT.getReasonText()));
+        endPlanPage.checkReasonCheckbox(EndPlanReasons.I_LOST_INTEREST);
+        Assert.assertTrue(endPlanPage.isReasonCheckboxChecked(EndPlanReasons.I_LOST_INTEREST),
+                String.format("After check, \"%s\" is still not checked", EndPlanReasons.I_LOST_INTEREST.getReasonText()));
+        endPlanPage.checkReasonCheckbox(EndPlanReasons.I_WANT_TO_START_DIFFERENT_PLAN);
+        Assert.assertTrue(endPlanPage.isReasonCheckboxChecked(EndPlanReasons.I_WANT_TO_START_DIFFERENT_PLAN),
+                String.format("After check, \"%s\" is still not checked", EndPlanReasons.I_WANT_TO_START_DIFFERENT_PLAN.getReasonText()));
+        endPlanPage.uncheckReasonCheckbox(EndPlanReasons.I_FORGOT_ABOUT_IT);
+        Assert.assertFalse(endPlanPage.isReasonCheckboxChecked(EndPlanReasons.I_FORGOT_ABOUT_IT),
+                String.format("After uncheck, \"%s\" is still checked", EndPlanReasons.I_FORGOT_ABOUT_IT.getReasonText()));
+        endPlanPage.uncheckAllReasonCheckbox();
+        Assert.assertTrue(endPlanPage.isEndButtonClickable(), "End button isn't clickable with no options selected");
+    }
 }

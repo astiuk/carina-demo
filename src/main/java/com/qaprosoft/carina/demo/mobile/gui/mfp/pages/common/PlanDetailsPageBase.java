@@ -12,5 +12,7 @@ public abstract class PlanDetailsPageBase extends AbstractPage implements IMobil
 
     public abstract PlansPageBase clickStarPlanButton();
 
+    public abstract EndPlanPageBase clickEndPlanButton();
+
     public abstract PlansPageBase clickNewPlanContinueButtonIfPresent();
 }

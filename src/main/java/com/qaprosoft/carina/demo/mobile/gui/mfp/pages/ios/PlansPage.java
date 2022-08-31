@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.ios;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.demo.mobile.enums.AvailablePlans;
 import com.qaprosoft.carina.demo.mobile.enums.PlanFilterRadioButtons;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.EndPlanPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlanDetailsPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlansPageBase;
 import org.apache.commons.lang3.NotImplementedException;
@@ -67,6 +68,21 @@ public class PlansPage extends PlansPageBase {
 
     @Override
     public void selectPlan(AvailablePlans plan) {
+        throw new NotImplementedException("Method is not implement for IOS");
+    }
+
+    @Override
+    public void clickBackArrowButton() {
+        throw new NotImplementedException("Method is not implement for IOS");
+    }
+
+    @Override
+    public void clickThreeDotsButton() {
+        throw new NotImplementedException("Method is not implement for IOS");
+    }
+
+    @Override
+    public EndPlanPageBase clickEndPlanDropdownButton() {
         throw new NotImplementedException("Method is not implement for IOS");
     }
 }

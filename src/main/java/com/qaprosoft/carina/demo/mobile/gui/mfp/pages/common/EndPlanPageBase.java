@@ -17,7 +17,7 @@ public abstract class EndPlanPageBase extends AbstractPage implements IMobileUti
 
     public abstract boolean isReasonCheckboxChecked(EndPlanReasons reason);
 
-    public abstract void uncheckAllReasonCheckbox();
+    public abstract PlansPageBase clickEndButton();
 
-    public abstract boolean isEndButtonClickable();
+    public abstract boolean isEndButtonEnabled();
 }

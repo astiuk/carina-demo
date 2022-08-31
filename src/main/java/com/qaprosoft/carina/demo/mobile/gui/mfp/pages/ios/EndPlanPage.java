@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.ios;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.demo.mobile.enums.EndPlanReasons;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.EndPlanPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlansPageBase;
 import org.apache.commons.lang3.NotImplementedException;
 import org.openqa.selenium.WebDriver;
 
@@ -29,12 +30,12 @@ public class EndPlanPage extends EndPlanPageBase {
     }
 
     @Override
-    public void uncheckAllReasonCheckbox() {
+    public PlansPageBase clickEndButton() {
         throw new NotImplementedException("Method is not implement for IOS");
     }
 
     @Override
-    public boolean isEndButtonClickable() {
+    public boolean isEndButtonEnabled() {
         throw new NotImplementedException("Method is not implement for IOS");
     }
 }

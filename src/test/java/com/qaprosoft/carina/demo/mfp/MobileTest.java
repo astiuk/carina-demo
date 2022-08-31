@@ -360,7 +360,11 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
         endPlanPage.uncheckReasonCheckbox(EndPlanReasons.I_FORGOT_ABOUT_IT);
         Assert.assertFalse(endPlanPage.isReasonCheckboxChecked(EndPlanReasons.I_FORGOT_ABOUT_IT),
                 String.format("After uncheck, \"%s\" is still checked", EndPlanReasons.I_FORGOT_ABOUT_IT.getReasonText()));
-        endPlanPage.uncheckAllReasonCheckbox();
-        Assert.assertTrue(endPlanPage.isEndButtonClickable(), "End button isn't clickable with no options selected");
+        for (EndPlanReasons reason: EndPlanReasons.values()) {
+            endPlanPage.uncheckReasonCheckbox(reason);
+        }
+        Assert.assertTrue(endPlanPage.isEndButtonEnabled(), "End button isn't enabled with no options selected");
+        endPlanPage.clickEndButton();
+        Assert.assertTrue(plansPage.isPageOpened(), "Plans page isn't opened after ending plan");
     }
 }

@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.mobile.enums.EndPlanReasons;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.EndPlanPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlansPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -38,15 +39,13 @@ public class EndPlanPage extends EndPlanPageBase {
     }
 
     @Override
-    public void uncheckAllReasonCheckbox() {
-        for (EndPlanReasons reason: EndPlanReasons.values()) {
-            swipe(reasonCheckbox.format(reason.getReasonText()), Direction.VERTICAL, 5, 500);
-            reasonCheckbox.format(reason.getReasonText()).uncheck();
-        }
+    public PlansPageBase clickEndButton() {
+        endButton.click(3);
+        return initPage(getDriver(), PlansPageBase.class);
     }
 
     @Override
-    public boolean isEndButtonClickable() {
-        return endButton.isClickable(3);
+    public boolean isEndButtonEnabled() {
+        return Boolean.parseBoolean(endButton.getAttribute("enabled"));
     }
 }

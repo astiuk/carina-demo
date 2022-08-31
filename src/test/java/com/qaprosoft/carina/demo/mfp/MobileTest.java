@@ -6,10 +6,7 @@ import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.mobile.enums.AvailablePlans;
-import com.qaprosoft.carina.demo.mobile.enums.BottomNavigatorButtons;
-import com.qaprosoft.carina.demo.mobile.enums.PlanFilterRadioButtons;
-import com.qaprosoft.carina.demo.mobile.enums.PremiumOptions;
+import com.qaprosoft.carina.demo.mobile.enums.*;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.*;
 import com.qaprosoft.carina.demo.mobile.interfaces.IConstants;
 import com.zebrunner.agent.core.annotation.TestLabel;
@@ -307,4 +304,25 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
                 String.format("New plan \"%s\" isn't present", secondPlan.getPlanName()));
     }
 
+    @Test
+    @MethodOwner(owner = "Hostiuk")
+    @TestRailCases(testCasesId = "12")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void amountOfCreatedFoodChangeTest() {
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        DashboardPageBase dashboardPage = initPage(getDriver(), DashboardPageBase.class);
+        Assert.assertTrue(dashboardPage.isPageOpened(), "Dashboard page isn't opened");
+        UserProfilePageBase userProfilePage = dashboardPage.openUserProfile();
+        Assert.assertTrue(userProfilePage.isPageOpened(), "User Profile page isn't opened");
+        MyItemsPageBase myItemsPage = (MyItemsPageBase) userProfilePage.openTabPage(
+                UserProfilePageBase.TabButtons.MY_ITEMS);
+        Assert.assertTrue(myItemsPage.isPageOpened(), "My Items page isn't opened");
+        String initialFoodCount = myItemsPage.getItemTitle(MyItemsCreateButtons.FOODS);
+        int expectedFoodCount = (Integer.parseInt(initialFoodCount.replaceAll("[^0-9]", "")) + 1);
+        myItemsPage.createFoodWithParameters("test", "test", 1, "g", 1, 1);
+        int actualFoodCount = Integer.parseInt(myItemsPage.getItemTitle(MyItemsCreateButtons.FOODS).replaceAll("[^0-9]", ""));
+        Assert.assertEquals(actualFoodCount, expectedFoodCount, "Food count didn't increased by 1 after creating new food");
+    }
 }

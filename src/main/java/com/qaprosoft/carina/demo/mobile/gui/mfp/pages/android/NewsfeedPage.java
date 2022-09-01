@@ -12,8 +12,22 @@ public class NewsfeedPage extends NewsfeedPageBase {
     @FindBy(id = "com.myfitnesspal.android:id/imageCameraButton")
     private ExtendedWebElement cameraButton;
 
+    @FindBy(xpath = "(//*[@resource-id='com.myfitnesspal.android:id/textLikeButton'])[1]")
+    private ExtendedWebElement likeButton;
+
     public NewsfeedPage(WebDriver driver) {
         super(driver);
+    }
+
+    @Override
+    public void clickLikeButton() {
+        swipe(likeButton, Direction.VERTICAL, 10, 500);
+        likeButton.click(3);
+    }
+
+    @Override
+    public boolean isPostLiked() {
+        return Boolean.parseBoolean(likeButton.getAttribute("selected"));
     }
 
     @Override

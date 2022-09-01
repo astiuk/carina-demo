@@ -369,4 +369,22 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
         endPlanPage.clickEndButton();
         Assert.assertTrue(plansPage.isPageOpened(), "Plans page isn't opened after ending plan");
     }
+
+    @Test
+    @MethodOwner(owner = "Hostiuk")
+    @TestRailCases(testCasesId = "14")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void userIsAbleToLikePostsTest() {
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        NewsfeedPageBase newsfeedPage = (NewsfeedPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.NEWSFEED);
+        Assert.assertTrue(newsfeedPage.isPageOpened(), "Newsfeed page isn't opened");
+        
+        newsfeedPage.clickLikeButton();
+        Assert.assertTrue(newsfeedPage.isPostLiked(), "Post isn't liked after clicking like button");
+        newsfeedPage.clickLikeButton();
+        Assert.assertFalse(newsfeedPage.isPostLiked(), "Post is still liked after clicking like button");
+    }
 }

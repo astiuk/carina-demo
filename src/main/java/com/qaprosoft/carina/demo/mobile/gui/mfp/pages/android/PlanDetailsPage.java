@@ -2,6 +2,7 @@ package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.EndPlanPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlanDetailsPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlansPageBase;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +13,9 @@ public class PlanDetailsPage extends PlanDetailsPageBase {
 
     @FindBy(id = "com.myfitnesspal.android.plans:id/btnStartPlan")
     private ExtendedWebElement startPlanButton;
+
+    @FindBy(id = "com.myfitnesspal.android.plans:id/btnLeavePlan")
+    private ExtendedWebElement endPlanButton;
 
     @FindBy(id = "com.myfitnesspal.android:id/positiveBtn")
     private ExtendedWebElement newPlanContinueButton;
@@ -25,6 +29,13 @@ public class PlanDetailsPage extends PlanDetailsPageBase {
         swipe(startPlanButton, Direction.VERTICAL, 5, 500);
         startPlanButton.click(3);
         return initPage(getDriver(), PlansPageBase.class);
+    }
+
+    @Override
+    public EndPlanPageBase clickEndPlanButton() {
+        swipe(endPlanButton, Direction.VERTICAL, 5, 500);
+        endPlanButton.click(3);
+        return initPage(getDriver(), EndPlanPageBase.class);
     }
 
     @Override

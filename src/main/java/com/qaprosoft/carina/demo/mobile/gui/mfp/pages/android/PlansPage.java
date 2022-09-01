@@ -5,9 +5,9 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.enums.AvailablePlans;
 import com.qaprosoft.carina.demo.mobile.enums.PlanFilterRadioButtons;
-import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.EndPlanPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlanDetailsPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlansPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlansTasksPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -29,23 +29,11 @@ public class PlansPage extends PlansPageBase {
     @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android.plans:id/chipGroupFilterTags']/*[@text='%s']")
     private ExtendedWebElement filterRadioButton;
 
-    @FindBy(id = "com.myfitnesspal.android.plans:id/welcomeActionBtn")
-    private ExtendedWebElement letsDoThisButton;
-
-    @FindBy(id = "com.myfitnesspal.android.plans:id/action_show_plans_hub")
-    private ExtendedWebElement plusButton;
-
     @FindBy(xpath = "//*[contains(@text, 'Available Plans')]/following-sibling::androidx.cardview.widget.CardView//android.widget.TextView[1]")
     private ExtendedWebElement firstAvailablePlanName;
 
     @ExtendedFindBy(accessibilityId = "Navigate up")
     private ExtendedWebElement backArrowButton;
-
-    @FindBy(id = "com.myfitnesspal.android.plans:id/task_day_more_menu")
-    private ExtendedWebElement threeDotsButton;
-
-    @FindBy(xpath = "//android.widget.TextView[@text='End Plan']")
-    private ExtendedWebElement endPlanDropdownButton;
 
     public PlansPage(WebDriver driver) {
         super(driver);
@@ -77,11 +65,6 @@ public class PlansPage extends PlansPageBase {
     }
 
     @Override
-    public void clickPlusButton() {
-        plusButton.clickIfPresent(2);
-    }
-
-    @Override
     public boolean isTakeTheSurveyLinkPresent() {
         swipe(takeTheSurveyLink, Direction.VERTICAL, 26, 500);
         return takeTheSurveyLink.isPresent(3);
@@ -110,28 +93,19 @@ public class PlansPage extends PlansPageBase {
 
     @Override
     public void selectPlan(AvailablePlans plan) {
-        plusButton.clickIfPresent(2);
+        PlansTasksPageBase plansTasksPage = initPage(getDriver(), PlansTasksPageBase.class);
+        plansTasksPage.clickPlusButtonIfPresent();
         PlanDetailsPageBase planDetailsPage = clickAvailablePlan(plan);
         planDetailsPage.clickStarPlanButton();
         planDetailsPage.clickNewPlanContinueButtonIfPresent();
-        letsDoThisButton.click(2);
-        clickPlusButton();
+        plansTasksPage.clickLetsDoThisButton();
+        plansTasksPage.clickPlusButtonIfPresent();
     }
 
     @Override
-    public void clickBackArrowButton() {
+    public PlansTasksPageBase clickBackArrowButton() {
         backArrowButton.click(3);
-    }
-
-    @Override
-    public void clickThreeDotsButton() {
-        threeDotsButton.click(3);
-    }
-
-    @Override
-    public EndPlanPageBase clickEndPlanDropdownButton() {
-        endPlanDropdownButton.click(3);
-        return initPage(getDriver(), EndPlanPageBase.class);
+        return initPage(getDriver(), PlansTasksPageBase.class);
     }
 
     @Override

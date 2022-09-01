@@ -3,9 +3,9 @@ package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.ios;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.demo.mobile.enums.AvailablePlans;
 import com.qaprosoft.carina.demo.mobile.enums.PlanFilterRadioButtons;
-import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.EndPlanPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlanDetailsPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlansPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlansTasksPageBase;
 import org.apache.commons.lang3.NotImplementedException;
 import org.openqa.selenium.WebDriver;
 
@@ -33,11 +33,6 @@ public class PlansPage extends PlansPageBase {
 
     @Override
     public AvailablePlans getFirstAvailablePlan() {
-        throw new NotImplementedException("Method is not implement for IOS");
-    }
-
-    @Override
-    public void clickPlusButton() {
         throw new NotImplementedException("Method is not implement for IOS");
     }
 
@@ -72,17 +67,8 @@ public class PlansPage extends PlansPageBase {
     }
 
     @Override
-    public void clickBackArrowButton() {
+    public PlansTasksPageBase clickBackArrowButton() {
         throw new NotImplementedException("Method is not implement for IOS");
     }
 
-    @Override
-    public void clickThreeDotsButton() {
-        throw new NotImplementedException("Method is not implement for IOS");
-    }
-
-    @Override
-    public EndPlanPageBase clickEndPlanDropdownButton() {
-        throw new NotImplementedException("Method is not implement for IOS");
-    }
 }

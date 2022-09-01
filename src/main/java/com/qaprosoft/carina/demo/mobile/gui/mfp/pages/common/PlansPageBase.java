@@ -20,8 +20,6 @@ public abstract class PlansPageBase extends AbstractPage implements IMobileUtils
 
     public abstract AvailablePlans getFirstAvailablePlan();
 
-    public abstract void clickPlusButton();
-
     public abstract boolean isTakeTheSurveyLinkPresent();
 
     public abstract boolean isFilterByTextPresent();
@@ -34,9 +32,6 @@ public abstract class PlansPageBase extends AbstractPage implements IMobileUtils
 
     public abstract void selectPlan(AvailablePlans plan);
 
-    public abstract void clickBackArrowButton();
+    public abstract PlansTasksPageBase clickBackArrowButton();
 
-    public abstract void clickThreeDotsButton();
-
-    public abstract EndPlanPageBase clickEndPlanDropdownButton();
 }

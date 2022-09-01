@@ -291,7 +291,8 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
         PlansPageBase plansPage = (PlansPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.PLANS);
         Assert.assertTrue(plansPage.isPageOpened(), "Plan page isn't opened");
 
-        plansPage.clickPlusButton();
+        PlansTasksPageBase plansTasksPage = initPage(getDriver(), PlansTasksPageBase.class);
+        plansTasksPage.clickPlusButtonIfPresent();
         firstPlan = plansPage.getFirstAvailablePlan();
         plansPage.selectPlan(firstPlan);
         secondPlan = plansPage.getFirstAvailablePlan();
@@ -346,8 +347,9 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
             plansPage.clickAvailablePlan(plan);
             plansPage.clickBackArrowButton();
         }
-        plansPage.clickThreeDotsButton();
-        EndPlanPageBase endPlanPage = plansPage.clickEndPlanDropdownButton();
+        PlansTasksPageBase plansTasksPage = initPage(getDriver(), PlansTasksPageBase.class);
+        plansTasksPage.clickThreeDotsButton();
+        EndPlanPageBase endPlanPage = plansTasksPage.clickEndPlanDropdownButton();
         endPlanPage.checkReasonCheckbox(EndPlanReasons.I_FORGOT_ABOUT_IT);
         Assert.assertTrue(endPlanPage.isReasonCheckboxChecked(EndPlanReasons.I_FORGOT_ABOUT_IT),
                 String.format("After check, \"%s\" is still not checked", EndPlanReasons.I_FORGOT_ABOUT_IT.getReasonText()));

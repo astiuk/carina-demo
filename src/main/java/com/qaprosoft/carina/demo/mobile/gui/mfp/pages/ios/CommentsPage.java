@@ -2,29 +2,33 @@ package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.ios;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.CommentsPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.NewsfeedPageBase;
 import org.apache.commons.lang3.NotImplementedException;
 import org.openqa.selenium.WebDriver;
 
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = NewsfeedPageBase.class)
-public class NewsfeedPage extends NewsfeedPageBase {
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = CommentsPageBase.class)
+public class CommentsPage extends CommentsPageBase {
 
-    public NewsfeedPage(WebDriver driver) {
+    public CommentsPage(WebDriver driver) {
         super(driver);
     }
 
     @Override
-    public void clickLikeButton() {
+    public void typeComment(String comment) {
         throw new NotImplementedException("Method is not implement for IOS");
     }
 
     @Override
-    public boolean isPostLiked() {
+    public void clickCheckButton() {
         throw new NotImplementedException("Method is not implement for IOS");
     }
 
     @Override
-    public CommentsPageBase clickCommentButton() {
+    public boolean isCommentPresent(String comment) {
+        throw new NotImplementedException("Method is not implement for IOS");
+    }
+
+    @Override
+    public void deleteComment(String comment) {
         throw new NotImplementedException("Method is not implement for IOS");
     }
 }

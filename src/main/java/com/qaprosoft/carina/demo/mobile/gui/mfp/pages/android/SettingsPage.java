@@ -18,7 +18,7 @@ public class SettingsPage extends SettingsPageBase {
     @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/toolbar']/android.widget.ImageButton")
     private ExtendedWebElement backArrowButton;
 
-    @FindBy(xpath = "//*[@text='%s']")
+    @FindBy(id = "com.myfitnesspal.android:id/%s")
     private ExtendedWebElement settingsButton;
 
     public SettingsPage(WebDriver driver) {
@@ -27,8 +27,8 @@ public class SettingsPage extends SettingsPageBase {
 
     @Override
     public AbstractPage openPage(SettingsButtons button) {
-        swipe(settingsButton.format(button.getButtonText()), Direction.VERTICAL, 5, 500);
-        settingsButton.format(button.getButtonText()).click(3);
+        swipe(settingsButton.format(button.getButtonId()), Direction.VERTICAL, 5, 500);
+        settingsButton.format(button.getButtonId()).click(3);
         return initPage(getDriver(), button.getPage());
     }
 

@@ -18,7 +18,7 @@ public class PrivacyCenterPage extends PrivacyCenterPageBase {
     @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/toolbar']/android.widget.ImageButton")
     private ExtendedWebElement backArrowButton;
 
-    @FindBy(xpath = "//*[@text='%s']")
+    @FindBy(id = "com.myfitnesspal.android:id/%s")
     private ExtendedWebElement privacyCenterButton;
 
     public PrivacyCenterPage(WebDriver driver) {
@@ -27,7 +27,7 @@ public class PrivacyCenterPage extends PrivacyCenterPageBase {
 
     @Override
     public AbstractPage openPage(PrivacyCenterButtons button) {
-        privacyCenterButton.format(button.getButtonText()).click(3);
+        privacyCenterButton.format(button.getButtonId()).click(3);
         return initPage(getDriver(), button.getPage());
     }
 

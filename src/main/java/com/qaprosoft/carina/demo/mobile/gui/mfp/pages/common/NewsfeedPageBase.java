@@ -13,4 +13,6 @@ public abstract class NewsfeedPageBase extends AbstractPage implements IMobileUt
     public abstract void clickLikeButton();
 
     public abstract boolean isPostLiked();
+
+    public abstract CommentsPageBase clickCommentButton();
 }

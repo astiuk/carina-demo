@@ -10,6 +10,7 @@ import com.qaprosoft.carina.demo.mobile.enums.*;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.*;
 import com.qaprosoft.carina.demo.mobile.interfaces.IConstants;
 import com.zebrunner.agent.core.annotation.TestLabel;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -386,5 +387,26 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(newsfeedPage.isPostLiked(), "Post isn't liked after clicking like button");
         newsfeedPage.clickLikeButton();
         Assert.assertFalse(newsfeedPage.isPostLiked(), "Post is still liked after clicking like button");
+    }
+
+    @Test
+    @MethodOwner(owner = "Hostiuk")
+    @TestRailCases(testCasesId = "15")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void userCommentPostsTest() {
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        NewsfeedPageBase newsfeedPage = (NewsfeedPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.NEWSFEED);
+        Assert.assertTrue(newsfeedPage.isPageOpened(), "Newsfeed page isn't opened");
+
+        CommentsPageBase commentsPage = newsfeedPage.clickCommentButton();
+        Assert.assertTrue(commentsPage.isPageOpened(), "Comments page isn't opened");
+        String randomComment = RandomStringUtils.randomAlphabetic(8);
+        commentsPage.typeComment(randomComment);
+        commentsPage.clickCheckButton();
+        Assert.assertTrue(commentsPage.isCommentPresent(randomComment), "Comment isn't present adding new comment");
+        commentsPage.deleteComment(randomComment);
     }
 }

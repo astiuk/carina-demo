@@ -2,6 +2,7 @@ package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.CommentsPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.NewsfeedPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -14,6 +15,9 @@ public class NewsfeedPage extends NewsfeedPageBase {
 
     @FindBy(xpath = "(//*[@resource-id='com.myfitnesspal.android:id/textLikeButton'])[1]")
     private ExtendedWebElement likeButton;
+
+    @FindBy(xpath = "(//*[@resource-id='com.myfitnesspal.android:id/textButtonComment'])[1]")
+    private ExtendedWebElement commentButton;
 
     public NewsfeedPage(WebDriver driver) {
         super(driver);
@@ -28,6 +32,13 @@ public class NewsfeedPage extends NewsfeedPageBase {
     @Override
     public boolean isPostLiked() {
         return Boolean.parseBoolean(likeButton.getAttribute("selected"));
+    }
+
+    @Override
+    public CommentsPageBase clickCommentButton() {
+        swipe(commentButton, Direction.VERTICAL, 10, 500);
+        commentButton.click(3);
+        return initPage(getDriver(), CommentsPageBase.class);
     }
 
     @Override

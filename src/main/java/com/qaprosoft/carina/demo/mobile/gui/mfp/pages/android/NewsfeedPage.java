@@ -19,6 +19,10 @@ public class NewsfeedPage extends NewsfeedPageBase {
     @FindBy(xpath = "(//*[@resource-id='com.myfitnesspal.android:id/textButtonComment'])[1]")
     private ExtendedWebElement commentButton;
 
+    @FindBy(xpath = "//androidx.cardview.widget.CardView[.//*[contains(@text,'MyFitnessPal Blog')] and " +
+            ".//*[contains(@resource-id,'imageBlog')]]")
+    private ExtendedWebElement mfpArticleCard;
+
     public NewsfeedPage(WebDriver driver) {
         super(driver);
     }
@@ -39,6 +43,12 @@ public class NewsfeedPage extends NewsfeedPageBase {
         swipe(commentButton, Direction.VERTICAL, 10, 500);
         commentButton.click(3);
         return initPage(getDriver(), CommentsPageBase.class);
+    }
+
+    @Override
+    public boolean isMFPArticleBlogPresent() {
+        swipe(mfpArticleCard, Direction.UP, 10, 500);
+        return mfpArticleCard.isPresent(3);
     }
 
     @Override

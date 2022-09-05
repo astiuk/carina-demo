@@ -27,4 +27,9 @@ public class NewsfeedPage extends NewsfeedPageBase {
     public CommentsPageBase clickCommentButton() {
         throw new NotImplementedException("Method is not implement for IOS");
     }
+
+    @Override
+    public boolean isMFPArticleBlogPresent() {
+        throw new NotImplementedException("Method is not implement for IOS");
+    }
 }

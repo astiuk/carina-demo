@@ -29,7 +29,7 @@ public abstract class MoreMenuPageBase extends AbstractPage implements IMobileUt
         FRIENDS("Friends", AbstractPage.class),
         MESSAGES("Messages", AbstractPage.class),
         PRIVACY_CENTER("Privacy Center", AbstractPage.class),
-        SETTINGS("Settings", AbstractPage.class),
+        SETTINGS("Settings", SettingsPageBase.class),
         HELP("Help", AbstractPage.class);
 
         private String optionText;

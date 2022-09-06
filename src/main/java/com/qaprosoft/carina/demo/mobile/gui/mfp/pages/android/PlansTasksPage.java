@@ -5,6 +5,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.EndPlanPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlansPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlansTasksPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.WorkoutDetailsPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -22,6 +23,9 @@ public class PlansTasksPage extends PlansTasksPageBase {
 
     @FindBy(xpath = "//android.widget.TextView[@text='End Plan']")
     private ExtendedWebElement endPlanDropdownButton;
+
+    @FindBy(id = "com.myfitnesspal.android.plans:id/workoutName")
+    private ExtendedWebElement workoutName;
 
     public PlansTasksPage(WebDriver driver) {
         super(driver);
@@ -47,5 +51,11 @@ public class PlansTasksPage extends PlansTasksPageBase {
     public EndPlanPageBase clickEndPlanDropdownButton() {
         endPlanDropdownButton.click(3);
         return initPage(getDriver(), EndPlanPageBase.class);
+    }
+
+    @Override
+    public WorkoutDetailsPageBase openWorkoutDetails() {
+        workoutName.click(3);
+        return initPage(getDriver(), WorkoutDetailsPageBase.class);
     }
 }

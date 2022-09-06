@@ -15,4 +15,6 @@ public abstract class NewsfeedPageBase extends AbstractPage implements IMobileUt
     public abstract boolean isPostLiked();
 
     public abstract CommentsPageBase clickCommentButton();
+
+    public abstract boolean isMFPArticleBlogPresent();
 }

@@ -16,4 +16,6 @@ public abstract class PlansTasksPageBase extends AbstractPage {
     public abstract void clickThreeDotsButton();
 
     public abstract EndPlanPageBase clickEndPlanDropdownButton();
+
+    public abstract WorkoutDetailsPageBase openWorkoutDetails();
 }

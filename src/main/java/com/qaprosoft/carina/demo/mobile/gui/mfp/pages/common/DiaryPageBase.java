@@ -1,9 +1,10 @@
 package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common;
 
+import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
-public abstract class DiaryPageBase extends AbstractPage {
+public abstract class DiaryPageBase extends AbstractPage implements IMobileUtils {
 
     public DiaryPageBase(WebDriver driver) {
         super(driver);
@@ -20,6 +21,8 @@ public abstract class DiaryPageBase extends AbstractPage {
     public abstract QuickAddPageBase openQuickAddPage(Meals meal);
 
     public abstract AbstractPage selectCustomDashboard(CustomDashboardPageBase.Options option);
+
+    public abstract boolean isGymWorkoutExercisePresent();
 
     public enum Meals {
         BREAKFAST(1),

@@ -30,6 +30,9 @@ public class PlansTasksPage extends PlansTasksPageBase {
     @FindBy(id = "com.myfitnesspal.android:id/snackbar_text")
     private ExtendedWebElement workoutLoggedMessagePopUp;
 
+    @FindBy(id = "com.myfitnesspal.android:id/snackbar_action")
+    private ExtendedWebElement workoutLoggedViewButton;
+
     public PlansTasksPage(WebDriver driver) {
         super(driver);
     }
@@ -71,5 +74,11 @@ public class PlansTasksPage extends PlansTasksPageBase {
     @Override
     public boolean isWorkoutLoggedMessagePopUpPresent() {
         return workoutLoggedMessagePopUp.isPresent(3);
+    }
+
+    @Override
+    public DiaryPageBase clickViewLoggedWorkoutButton() {
+        workoutLoggedViewButton.click(3);
+        return initPage(getDriver(), DiaryPageBase.class);
     }
 }

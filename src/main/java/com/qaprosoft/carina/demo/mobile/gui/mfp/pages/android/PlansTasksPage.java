@@ -2,10 +2,7 @@ package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.EndPlanPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlansPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlansTasksPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.WorkoutDetailsPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -26,6 +23,12 @@ public class PlansTasksPage extends PlansTasksPageBase {
 
     @FindBy(id = "com.myfitnesspal.android.plans:id/workoutName")
     private ExtendedWebElement workoutName;
+
+    @FindBy(id = "com.myfitnesspal.android.plans:id/logWorkout")
+    private ExtendedWebElement logWorkoutButton;
+
+    @FindBy(id = "com.myfitnesspal.android:id/snackbar_text")
+    private ExtendedWebElement workoutLoggedMessagePopUp;
 
     public PlansTasksPage(WebDriver driver) {
         super(driver);
@@ -57,5 +60,16 @@ public class PlansTasksPage extends PlansTasksPageBase {
     public WorkoutDetailsPageBase openWorkoutDetails() {
         workoutName.click(3);
         return initPage(getDriver(), WorkoutDetailsPageBase.class);
+    }
+
+    @Override
+    public LogWorkoutPageBase openLogWorkoutPage() {
+        logWorkoutButton.click(3);
+        return initPage(getDriver(), LogWorkoutPageBase.class);
+    }
+
+    @Override
+    public boolean isWorkoutLoggedMessagePopUpPresent() {
+        return workoutLoggedMessagePopUp.isPresent(3);
     }
 }

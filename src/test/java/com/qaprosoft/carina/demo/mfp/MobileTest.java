@@ -240,7 +240,7 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
                 String.format("\"%s\" text isn't present", IConstants.PLANS_DESCRIPTION));
 
         softAssert.assertTrue(plansPage.isFilterByTextPresent(), "\"Filter by\" text isn't present");
-        for(PlanFilterRadioButtons button : PlanFilterRadioButtons.values()) {
+        for (PlanFilterRadioButtons button : PlanFilterRadioButtons.values()) {
             softAssert.assertTrue(plansPage.isFilterButtonPresent(button),
                     String.format("\"%s\" text isn't present", button.getButtonText()));
         }
@@ -265,9 +265,9 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         PlansPageBase plansPage = (PlansPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.PLANS);
         Assert.assertTrue(plansPage.isPageOpened(), "Plans page isn't opened");
-        for(PlanFilterRadioButtons button : PlanFilterRadioButtons.values()) {
+        for (PlanFilterRadioButtons button : PlanFilterRadioButtons.values()) {
             plansPage.clickFilterButton(button);
-            for(AvailablePlans plan : button.getFilterPlans()) {
+            for (AvailablePlans plan : button.getFilterPlans()) {
                 softAssert.assertTrue(plansPage.isAvailablePlansCardNamePresent(plan),
                         String.format("\"%s\" name isn't present", plan.getPlanName()));
                 softAssert.assertTrue(plansPage.isAvailablePlansCardDetailsPresent(plan),
@@ -342,7 +342,7 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(plansPage.isPageOpened(), "Plan page isn't opened");
 
         // check if plan is selected
-        if(plansPage.isFilterByTextPresent()) {
+        if (plansPage.isFilterByTextPresent()) {
             AvailablePlans plan = plansPage.getFirstAvailablePlan();
             plansPage.selectPlan(plan);
             plansPage.clickAvailablePlan(plan);
@@ -363,7 +363,7 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
         endPlanPage.uncheckReasonCheckbox(EndPlanReasons.I_FORGOT_ABOUT_IT);
         Assert.assertFalse(endPlanPage.isReasonCheckboxChecked(EndPlanReasons.I_FORGOT_ABOUT_IT),
                 String.format("After uncheck, \"%s\" is still checked", EndPlanReasons.I_FORGOT_ABOUT_IT.getReasonText()));
-        for (EndPlanReasons reason: EndPlanReasons.values()) {
+        for (EndPlanReasons reason : EndPlanReasons.values()) {
             endPlanPage.uncheckReasonCheckbox(reason);
         }
         Assert.assertTrue(endPlanPage.isEndButtonEnabled(), "End button isn't enabled with no options selected");
@@ -382,7 +382,7 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         NewsfeedPageBase newsfeedPage = (NewsfeedPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.NEWSFEED);
         Assert.assertTrue(newsfeedPage.isPageOpened(), "Newsfeed page isn't opened");
-        
+
         newsfeedPage.clickLikeButton();
         Assert.assertTrue(newsfeedPage.isPostLiked(), "Post isn't liked after clicking like button");
         newsfeedPage.clickLikeButton();
@@ -477,7 +477,7 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
 
         PlansTasksPageBase plansTasksPage;
         // end plan if selected
-        if(!plansPage.isFilterByTextPresent()) {
+        if (!plansPage.isFilterByTextPresent()) {
             plansTasksPage = initPage(getDriver(), PlansTasksPageBase.class);
             plansTasksPage.clickThreeDotsButton();
             EndPlanPageBase endPlanPage = plansTasksPage.clickEndPlanDropdownButton();
@@ -489,5 +489,37 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
         plansTasksPage = plansPage.clickBackArrowButton();
         WorkoutDetailsPageBase workoutDetailsPage = plansTasksPage.openWorkoutDetails();
         Assert.assertTrue(workoutDetailsPage.isPageOpened(), "Workout Details page isn't opened");
+    }
+
+    @Test
+    @MethodOwner(owner = "Hostiuk")
+    @TestRailCases(testCasesId = "18")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void validateWorkoutLoggedMessageTest() {
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        PlansPageBase plansPage = (PlansPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.PLANS);
+        Assert.assertTrue(plansPage.isPageOpened(), "Plans page isn't opened");
+
+        PlansTasksPageBase plansTasksPage;
+        // end plan if selected
+        if (!plansPage.isFilterByTextPresent()) {
+            plansTasksPage = initPage(getDriver(), PlansTasksPageBase.class);
+            plansTasksPage.clickThreeDotsButton();
+            EndPlanPageBase endPlanPage = plansTasksPage.clickEndPlanDropdownButton();
+            endPlanPage.clickEndButton();
+        }
+        plansPage.clickFilterButton(PlanFilterRadioButtons.WORKOUT);
+        AvailablePlans plan = plansPage.getFirstAvailablePlan();
+        plansPage.selectPlan(plan);
+        plansTasksPage = plansPage.clickBackArrowButton();
+
+        LogWorkoutPageBase logWorkoutPage = plansTasksPage.openLogWorkoutPage();
+        logWorkoutPage.clickCheckmarkButton();
+        Assert.assertTrue(plansTasksPage.isWorkoutLoggedMessagePopUpPresent(),
+                "\"Workout logged\" confirmation message isn't present");
+
     }
 }

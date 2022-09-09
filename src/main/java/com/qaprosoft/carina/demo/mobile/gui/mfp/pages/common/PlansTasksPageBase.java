@@ -18,4 +18,8 @@ public abstract class PlansTasksPageBase extends AbstractPage {
     public abstract EndPlanPageBase clickEndPlanDropdownButton();
 
     public abstract WorkoutDetailsPageBase openWorkoutDetails();
+
+    public abstract LogWorkoutPageBase openLogWorkoutPage();
+
+    public abstract boolean isWorkoutLoggedMessagePopUpPresent();
 }

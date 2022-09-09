@@ -1,10 +1,7 @@
 package com.qaprosoft.carina.demo.mobile.gui.mfp.pages.ios;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
-import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.EndPlanPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlansPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.PlansTasksPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.WorkoutDetailsPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.mfp.pages.common.*;
 import org.apache.commons.lang3.NotImplementedException;
 import org.openqa.selenium.WebDriver;
 
@@ -37,6 +34,16 @@ public class PlansTasksPage extends PlansTasksPageBase {
 
     @Override
     public WorkoutDetailsPageBase openWorkoutDetails() {
+        throw new NotImplementedException("Method is not implement for IOS");
+    }
+
+    @Override
+    public LogWorkoutPageBase openLogWorkoutPage() {
+        throw new NotImplementedException("Method is not implement for IOS");
+    }
+
+    @Override
+    public boolean isWorkoutLoggedMessagePopUpPresent() {
         throw new NotImplementedException("Method is not implement for IOS");
     }
 }

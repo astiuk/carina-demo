@@ -22,4 +22,6 @@ public abstract class PlansTasksPageBase extends AbstractPage {
     public abstract LogWorkoutPageBase openLogWorkoutPage();
 
     public abstract boolean isWorkoutLoggedMessagePopUpPresent();
+
+    public abstract DiaryPageBase clickViewLoggedWorkoutButton();
 }

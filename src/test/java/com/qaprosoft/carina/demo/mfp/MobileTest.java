@@ -522,4 +522,36 @@ public class MobileTest implements IAbstractTest, IMobileUtils {
                 "\"Workout logged\" confirmation message isn't present");
 
     }
+
+    @Test
+    @MethodOwner(owner = "Hostiuk")
+    @TestRailCases(testCasesId = "19")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void verifyTappingOnWorkoutViewButtonTest() {
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        PlansPageBase plansPage = (PlansPageBase) commonPage.clickBottomNavigatorButton(BottomNavigatorButtons.PLANS);
+        Assert.assertTrue(plansPage.isPageOpened(), "Plans page isn't opened");
+
+        PlansTasksPageBase plansTasksPage;
+        // end plan if selected
+        if (!plansPage.isFilterByTextPresent()) {
+            plansTasksPage = initPage(getDriver(), PlansTasksPageBase.class);
+            plansTasksPage.clickThreeDotsButton();
+            EndPlanPageBase endPlanPage = plansTasksPage.clickEndPlanDropdownButton();
+            endPlanPage.clickEndButton();
+        }
+        plansPage.clickFilterButton(PlanFilterRadioButtons.WORKOUT);
+        AvailablePlans plan = plansPage.getFirstAvailablePlan();
+        plansPage.selectPlan(plan);
+        plansTasksPage = plansPage.clickBackArrowButton();
+
+        LogWorkoutPageBase logWorkoutPage = plansTasksPage.openLogWorkoutPage();
+        logWorkoutPage.clickCheckmarkButton();
+        DiaryPageBase diaryPage = plansTasksPage.clickViewLoggedWorkoutButton();
+        Assert.assertTrue(diaryPage.isPageOpened(), "Diary page isn't opened");
+        Assert.assertTrue(diaryPage.isGymWorkoutExercisePresent(), "\"Gym Workout\" exercise isn't logged");
+    }
 }

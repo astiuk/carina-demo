@@ -46,4 +46,9 @@ public class PlansTasksPage extends PlansTasksPageBase {
     public boolean isWorkoutLoggedMessagePopUpPresent() {
         throw new NotImplementedException("Method is not implement for IOS");
     }
+
+    @Override
+    public DiaryPageBase clickViewLoggedWorkoutButton() {
+        throw new NotImplementedException("Method is not implement for IOS");
+    }
 }

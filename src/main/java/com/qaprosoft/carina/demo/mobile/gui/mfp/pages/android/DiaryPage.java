@@ -35,6 +35,9 @@ public class DiaryPage extends DiaryPageBase {
     @FindBy(xpath = "//*[@resource-id='com.myfitnesspal.android:id/dashboardTitle']/android.widget.ImageView")
     private ExtendedWebElement customDashboardButton;
 
+    @FindBy(xpath = "//*[@text='Gym Workout']")
+    private ExtendedWebElement gymWorkoutExerciseName;
+
     public DiaryPage(WebDriver driver) {
         super(driver);
     }
@@ -79,6 +82,12 @@ public class DiaryPage extends DiaryPageBase {
         CustomDashboardPageBase customDashboardPage = initPage(getDriver(), CustomDashboardPageBase.class);
         customDashboardPage.selectCustomDashboard(option);
         return initPage(getDriver(), option.getPage());
+    }
+
+    @Override
+    public boolean isGymWorkoutExercisePresent() {
+        swipe(gymWorkoutExerciseName, Direction.UP, 5, 500);
+        return gymWorkoutExerciseName.isPresent(3);
     }
 
     @Override

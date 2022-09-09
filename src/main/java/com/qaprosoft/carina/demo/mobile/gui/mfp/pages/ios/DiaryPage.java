@@ -43,4 +43,9 @@ public class DiaryPage extends DiaryPageBase {
     public AbstractPage selectCustomDashboard(CustomDashboardPageBase.Options option) {
         throw new NotImplementedException("Method is not implement for IOS");
     }
+
+    @Override
+    public boolean isGymWorkoutExercisePresent() {
+        throw new NotImplementedException("Method is not implement for IOS");
+    }
 }
